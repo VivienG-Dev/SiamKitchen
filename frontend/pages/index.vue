@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-
 const promotionsSection = ref<HTMLElement | null>(null);
 
 const scrollToPromotions = () => {
