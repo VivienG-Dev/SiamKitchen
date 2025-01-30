@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <Card
+    <div
         class="flex-1 flex flex-col h-auto bg-white p-2 shadow-sm hover:shadow-lg rounded-xl transition-shadow duration-300 hover:shadow-blue-300/50">
         <template v-if="loading">
             <div class="animate-pulse">
@@ -34,16 +34,16 @@ withDefaults(defineProps<Props>(), {
         <template v-else>
             <NuxtImg :src="imageUrl" :alt="title" class="rounded-xl w-full h-48 object-cover" />
             <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
-                <CardHeader class="flex flex-row justify-between">
-                    <CardTitle class="text-2xl font-bold">{{ title }}</CardTitle>
+                <div class="flex flex-row justify-between">
+                    <h3 class="text-2xl font-bold">{{ title }}</h3>
                     <span class="text-lg text-green-500 font-medium">
                         ${{ price }}
                     </span>
-                </CardHeader>
-                <CardContent>
+                </div>
+                <div>
                     <p class="text-md">{{ description }}</p>
-                </CardContent>
+                </div>
             </div>
         </template>
-    </Card>
+    </div>
 </template>

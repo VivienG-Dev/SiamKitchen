@@ -4,38 +4,47 @@ interface Dish {
     price: number;
     description: string;
     imageUrl: string;
+    isFeatured: boolean;
 }
 
 const isLoading = ref(true);
 const featuredDishes = ref<Dish[]>([]);
 
-// Simulate loading data
 onMounted(async () => {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
 
-    featuredDishes.value = [
-        {
-            title: 'Pad Thai',
-            price: 10,
-            description: 'A popular Thai dish made with stir-fried noodles, vegetables, and a flavorful sauce.',
-            imageUrl: '../public/pad-thai.jpg'
-        },
-        {
-            title: 'Green Curry',
-            price: 12,
-            description: 'A fragrant Thai curry made with coconut milk, vegetables, and your choice of protein.',
-            imageUrl: '../public/pad-thai.jpg'
-        },
-        {
-            title: 'Tom Yum Soup',
-            price: 8,
-            description: 'A hot and sour Thai soup with lemongrass, lime leaves, and mushrooms.',
-            imageUrl: '../public/pad-thai.jpg'
-        }
-    ];
+        const dishes: Dish[] = [
+            {
+                title: 'Pad Thai',
+                price: 10,
+                description: 'A popular Thai dish made with stir-fried noodles, vegetables, and a flavorful sauce.',
+                imageUrl: '/pad-thai.jpg',
+                isFeatured: true
+            },
+            {
+                title: 'Green Curry',
+                price: 12,
+                description: 'A fragrant Thai curry made with coconut milk, vegetables, and your choice of protein.',
+                imageUrl: '/pad-thai.jpg',
+                isFeatured: true
+            },
+            {
+                title: 'Tom Yum Soup',
+                price: 8,
+                description: 'A hot and sour Thai soup with lemongrass, lime leaves, and mushrooms.',
+                imageUrl: '/pad-thai.jpg',
+                isFeatured: true
+            }
+        ];
 
-    isLoading.value = false;
+        featuredDishes.value = dishes;
+    } catch (error) {
+        console.error('Error loading dishes:', error);
+    } finally {
+        isLoading.value = false;
+    }
 });
 </script>
 
@@ -46,9 +55,9 @@ onMounted(async () => {
             <p class="text-lg md:text-2xl">Our featured dishes.</p>
             <div class="flex flex-col md:flex-row gap-4 mt-8">
                 <template v-if="isLoading">
-                    <IndexDishCard v-for="n in 3" :key="n" loading title="" :price="0" description="" imageUrl="" />
+                    <IndexDishCard v-for="n in 3" :key="n" :loading="true" title="" :price="0" description=""
+                        imageUrl="" />
                 </template>
-
                 <template v-else>
                     <IndexDishCard v-for="dish in featuredDishes" :key="dish.title" v-bind="dish" />
                 </template>
