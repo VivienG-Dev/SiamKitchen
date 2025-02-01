@@ -14,7 +14,7 @@ const emit = defineEmits(['scroll']);
 
 <template>
     <section
-        class="bg-gradient-to-br from-blue-400 via-blue-300 to-green-300 text-white p-4 m-4 h-[calc(100dvh-2rem)] rounded-4xl">
+        class="bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 text-white p-4 m-4 h-[calc(100dvh-2rem)] rounded-4xl">
         <Container class="flex flex-col justify-center h-full relative">
             <div class="flex flex-col items-start">
                 <h1 class="text-5xl md:text-8xl font-bold">{{ title }}</h1>
