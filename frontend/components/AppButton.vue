@@ -15,7 +15,7 @@ const variantClasses = computed(() => ({
     <NuxtLink v-if="link" :to="link">
         <button :class="[
             variantClasses,
-            'px-4 py-2 rounded-xl mt-4 transition-all duration-300 w-fit shadow-sm cursor-pointer'
+            'px-4 py-2 rounded-xl mt-4 transition-all duration-300 w-fit shadow-sm cursor-pointer hover:scale-105 active:scale-95 hover:rotate-1'
         ]">
             <slot :variant="variant" />
         </button>
