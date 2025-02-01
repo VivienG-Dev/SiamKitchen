@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { CookingPot } from 'lucide-vue-next';
-
 const breakfastItems = [
     {
         title: 'Pad Thai',
@@ -19,8 +17,7 @@ const breakfastItems = [
 
 <template>
     <div>
-        <PageHero title="Our menu"
-            description="Explore our wide range of dishes, from classic favorites to innovative creations." />
+        <PageHero title="Our menu" description="Explore our delicious offerings" />
         <MenuSection />
     </div>
 </template>
