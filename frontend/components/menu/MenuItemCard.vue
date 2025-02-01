@@ -1,20 +1,35 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 interface Props {
     title: string;
     price: number;
     description: string;
     imageUrl: string;
     loading?: boolean;
+    dietary?: string[];
+    dietaryIcons?: Array<{
+        icon: any;
+        label: string;
+        color: string;
+        textColor: string;
+    }>;
 }
 
-withDefaults(defineProps<Props>(), {
-    loading: false
+const props = withDefaults(defineProps<Props>(), {
+    loading: false,
+    dietary: () => [],
+    dietaryIcons: () => []
 });
+
+const activeIcons = computed(() =>
+    props.dietaryIcons?.filter(icon => props.dietary?.includes(icon.label)) ?? []
+);
 </script>
 
 <template>
     <div
-        class="flex flex-row bg-white p-2 shadow-sm hover:shadow-lg rounded-xl transition-shadow duration-300 hover:shadow-blue-300/50 h-36">
+        class="flex flex-row bg-white shadow-sm hover:shadow-xl rounded-xl transition-all duration-300 hover:scale-102 hover:bg-gradient-to-r hover:from-white hover:to-blue-50 group">
         <template v-if="loading">
             <div class="animate-pulse flex flex-row w-full gap-4">
                 <div class="rounded-xl w-1/3 bg-gray-200" /> <!-- Image skeleton -->
@@ -32,16 +47,35 @@ withDefaults(defineProps<Props>(), {
         </template>
 
         <template v-else>
-            <NuxtImg :src="imageUrl" :alt="title" class="rounded-xl w-1/3 h-full object-cover" />
-            <div class="flex flex-col justify-center flex-1 gap-2 backdrop-blur-sm p-4 rounded-xl">
+            <div class="relative w-1/3">
+                <NuxtImg :src="imageUrl" :alt="title" class="rounded-l-xl w-full h-full object-cover" />
+                <!-- Dietary Icons -->
+                <div class="absolute top-2 right-2 flex flex-wrap gap-1 max-w-[90%]">
+                    <div v-for="icon in activeIcons" :key="icon.label" class="group/icon relative">
+                        <component :is="icon.icon" class="w-6 h-6 text-white p-1 rounded-full" :class="icon.color" />
+                        <!-- Tooltip -->
+                        <div class="absolute bottom-full right-0 mb-2 hidden group-hover/icon:block z-10">
+                            <div class="bg-gray-800 text-white text-xs rounded py-1 px-2 whitespace-nowrap">
+                                {{ icon.label }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col justify-center flex-1 gap-2 p-2 rounded-xl">
                 <div class="flex flex-row justify-between">
-                    <h3 class="text-2xl font-bold">{{ title }}</h3>
-                    <span class="text-lg text-green-500 font-medium">
+                    <h3 class="text-lg md:text-xl font-bold group-hover:text-blue-600 transition-colors duration-300">
+                        {{ title }}
+                    </h3>
+                    <span
+                        class="text-lg text-green-500 font-medium group-hover:scale-110 transition-transform duration-300">
                         ${{ price }}
                     </span>
                 </div>
                 <div>
-                    <p class="text-md line-clamp-2">{{ description }}</p>
+                    <p
+                        class="text-sm md:text-md line-clamp-2 text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                        {{ description }}</p>
                 </div>
             </div>
         </template>

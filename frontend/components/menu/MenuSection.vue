@@ -1,10 +1,26 @@
 <script setup lang="ts">
+import {
+    Leaf,
+    FlameKindling,
+    CircleAlert,
+    Heart,
+    CircleDot,
+    Shell,
+    Coffee,
+    Sandwich,
+    Star,
+    BadgeAlert,
+    Apple,
+    CircleCheck
+} from 'lucide-vue-next';
+
 interface MenuItem {
     title: string;
     price: number;
     description: string;
     imageUrl: string;
     category: 'breakfast' | 'lunch' | 'dinner' | 'desserts' | 'drinks';
+    dietary?: string[];
 }
 
 const isLoading = ref(true);
@@ -25,61 +41,88 @@ const itemsByCategory = computed(() => {
     }));
 });
 
+const dietaryIcons = [
+    { icon: Leaf, label: 'Vegetarian', color: 'bg-green-500', textColor: 'text-green-700' },
+    { icon: Apple, label: 'Vegan', color: 'bg-emerald-500', textColor: 'text-emerald-700' },
+    { icon: CircleCheck, label: 'Gluten-Free', color: 'bg-amber-500', textColor: 'text-amber-700' },
+    { icon: Sandwich, label: 'Contains Meat', color: 'bg-red-700', textColor: 'text-red-700' },
+    { icon: Shell, label: 'Contains Seafood', color: 'bg-blue-500', textColor: 'text-blue-700' },
+    { icon: FlameKindling, label: 'Spicy', color: 'bg-orange-500', textColor: 'text-orange-700' },
+    { icon: Coffee, label: 'Contains Dairy', color: 'bg-cyan-500', textColor: 'text-cyan-700' },
+    { icon: CircleDot, label: 'Contains Eggs', color: 'bg-yellow-500', textColor: 'text-yellow-700' },
+    { icon: Heart, label: 'Heart Healthy', color: 'bg-rose-500', textColor: 'text-rose-700' },
+    { icon: CircleAlert, label: 'Contains Nuts', color: 'bg-brown-500', textColor: 'text-brown-700' },
+    { icon: BadgeAlert, label: 'Common Allergens', color: 'bg-purple-500', textColor: 'text-purple-700' },
+    { icon: Star, label: 'Halal', color: 'bg-teal-500', textColor: 'text-teal-700' }
+];
+
 onMounted(async () => {
     try {
         // Simulate API call delay
         await new Promise(resolve => setTimeout(resolve, 1000));
 
-        // In the future, this would be an API call
         menuItems.value = [
             {
                 title: 'Pad Thai',
                 price: 10,
                 description: 'A popular Thai dish made with stir-fried noodles, vegetables, and a flavorful sauce.',
                 imageUrl: '/pad-thai.jpg',
-                category: 'lunch'
+                category: 'lunch',
+                dietary: [
+                    'Vegetarian',
+                    'Vegan',
+                    'Gluten-Free',
+                    'Common Allergens',
+                    'Halal'
+                ]
             },
             {
                 title: 'Green Curry',
                 price: 12,
                 description: 'A fragrant Thai curry made with coconut milk, vegetables, and your choice of protein.',
                 imageUrl: '/pad-thai.jpg',
-                category: 'dinner'
+                category: 'dinner',
+                dietary: ['Contains Eggs', 'Contains Nuts', 'Spicy']
             },
             {
                 title: 'Thai Iced Tea',
                 price: 4,
                 description: 'Traditional Thai tea served with cream and ice.',
                 imageUrl: '/pad-thai.jpg',
-                category: 'drinks'
+                category: 'drinks',
+                dietary: ['Contains Dairy']
             },
             {
                 title: 'Mango Sticky Rice',
                 price: 6,
                 description: 'Sweet sticky rice served with fresh mango and coconut cream.',
                 imageUrl: '/pad-thai.jpg',
-                category: 'desserts'
+                category: 'desserts',
+                dietary: ['Contains Eggs']
             },
             {
                 title: 'Morning Glory',
                 price: 8,
                 description: 'Traditional Thai breakfast with eggs and rice.',
                 imageUrl: '/pad-thai.jpg',
-                category: 'breakfast'
+                category: 'breakfast',
+                dietary: ['Contains Eggs']
             },
             {
                 title: 'Tom Yum Soup',
                 price: 8,
                 description: 'A hot and sour Thai soup with lemongrass, lime leaves, and mushrooms.',
                 imageUrl: '/pad-thai.jpg',
-                category: 'lunch'
+                category: 'lunch',
+                dietary: ['Contains Eggs', 'Contains Nuts', 'Spicy']
             },
             {
                 title: 'Pad See Ew',
                 price: 10,
                 description: 'Stir-fried noodles with vegetables and your choice of protein.',
                 imageUrl: '/pad-thai.jpg',
-                category: 'breakfast'
+                category: 'breakfast',
+                dietary: ['Contains Eggs']
             }
         ];
     } catch (error) {
@@ -91,13 +134,8 @@ onMounted(async () => {
 </script>
 
 <template>
-    <section class="text-black px-4 md:px-0">
+    <section class="text-black px-4 md:px-4 lg:px-4 xl:px-0">
         <Container class="flex flex-col">
-            <div class="flex flex-col py-8">
-                <h2 class="text-xl md:text-3xl font-bold text-center">Our Menu</h2>
-                <p class="text-sm md:text-lg text-center text-gray-600 mb-8">Explore our delicious offerings</p>
-            </div>
-
             <template v-if="isLoading">
                 <div v-for="n in 3" :key="n" class="mb-12">
                     <div class="animate-pulse mb-4">
@@ -112,17 +150,27 @@ onMounted(async () => {
             </template>
 
             <template v-else>
-                <div v-for="category in itemsByCategory" :key="category.id" class="mb-12">
-                    <div class="mb-4">
-                        <h3 class="text-2xl font-bold">{{ category.name }}</h3>
-                        <p class="text-gray-600">{{ category.description }}</p>
+                <div v-for="category in itemsByCategory" :key="category.id" class="mb-16 relative">
+                    <div class="mb-8 relative">
+                        <div class="flex items-center justify-between pb-4 border-b-2 border-blue-100">
+                            <div>
+                                <h3 class="text-3xl font-bold text-blue-900 mb-2">{{ category.name }}</h3>
+                                <p class="text-gray-600 italic">{{ category.description }}</p>
+                            </div>
+                            <!-- Optional: Add category icons -->
+                            <div class="hidden md:block text-blue-500 opacity-10 text-8xl font-bold">
+                                {{ category.name[0] }}
+                            </div>
+                        </div>
                     </div>
 
-                    <div v-if="category.items.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <MenuItemCard v-for="item in category.items" :key="item.title" v-bind="item" />
+                    <div v-if="category.items.length > 0" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <MenuItemCard v-for="item in category.items" :key="item.title" v-bind="item"
+                            :dietary-icons="dietaryIcons" />
                     </div>
-                    <div v-else class="bg-gray-100 rounded-xl p-4 text-center text-gray-500">
-                        No items available in this category
+                    <div v-else class="bg-gray-50 rounded-xl p-8 text-center text-gray-500 border border-gray-200">
+                        <p class="text-lg">No items available in this category</p>
+                        <p class="text-sm text-gray-400">Check back soon for updates!</p>
                     </div>
                 </div>
             </template>
