@@ -55,11 +55,10 @@ onMounted(async () => {
             <p class="text-lg md:text-2xl">Our featured dishes.</p>
             <div class="flex flex-col md:flex-row gap-4 mt-8">
                 <template v-if="isLoading">
-                    <IndexDishCard v-for="n in 3" :key="n" :loading="true" title="" :price="0" description=""
-                        imageUrl="" />
+                    <ItemCard v-for="n in 3" :key="n" :loading="true" title="" :price="0" description="" imageUrl="" />
                 </template>
                 <template v-else>
-                    <IndexDishCard v-for="dish in featuredDishes" :key="dish.title" v-bind="dish" />
+                    <ItemCard v-for="dish in featuredDishes" :key="dish.title" v-bind="dish" />
                 </template>
             </div>
             <div class="flex justify-center">
