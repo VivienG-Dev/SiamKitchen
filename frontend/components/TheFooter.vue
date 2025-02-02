@@ -14,7 +14,7 @@ const quickLinks: QuickLink[] = [
 </script>
 
 <template>
-    <footer class="bg-gray-700 h-auto">
+    <footer class="bg-gray-700 h-auto mt-12">
         <Container>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-white pt-8">
                 <div>
