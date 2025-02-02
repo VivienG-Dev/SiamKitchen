@@ -47,7 +47,7 @@ const activeIcons = computed(() =>
         </template>
 
         <template v-else>
-            <div class="relative w-1/3">
+            <div class="relative w-1/3 h-32">
                 <NuxtImg :src="imageUrl" :alt="title" class="rounded-l-xl w-full h-full object-cover" />
                 <!-- Dietary Icons -->
                 <div class="absolute top-2 right-2 flex flex-wrap gap-1 max-w-[90%]">
@@ -62,7 +62,7 @@ const activeIcons = computed(() =>
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col justify-center flex-1 gap-2 p-2 rounded-xl">
+            <div class="flex flex-col flex-1 gap-2 p-2 rounded-xl">
                 <div class="flex flex-row justify-between">
                     <h3 class="text-lg md:text-xl font-bold group-hover:text-blue-600 transition-colors duration-300">
                         {{ title }}
