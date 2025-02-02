@@ -157,7 +157,6 @@ onMounted(async () => {
                                 <h3 class="text-3xl font-bold text-blue-900 mb-2">{{ category.name }}</h3>
                                 <p class="text-gray-600 italic">{{ category.description }}</p>
                             </div>
-                            <!-- Optional: Add category icons -->
                             <div class="hidden md:block text-blue-500 opacity-10 text-8xl font-bold">
                                 {{ category.name[0] }}
                             </div>
