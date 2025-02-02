@@ -5,10 +5,12 @@ interface Props {
     description: string;
     imageUrl: string;
     loading?: boolean;
+    link?: string;
 }
 
 withDefaults(defineProps<Props>(), {
-    loading: false
+    loading: false,
+    link: ''
 });
 </script>
 
@@ -32,18 +34,20 @@ withDefaults(defineProps<Props>(), {
         </template>
 
         <template v-else>
-            <NuxtImg :src="imageUrl" :alt="title" class="rounded-xl w-full h-48 object-cover" />
-            <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
-                <div class="flex flex-row justify-between">
-                    <h3 class="text-2xl font-bold">{{ title }}</h3>
-                    <span class="text-lg text-green-500 font-medium">
-                        ${{ price }}
-                    </span>
+            <NuxtLink :to="link" :class="link ? 'cursor-pointer' : ''">
+                <NuxtImg :src="imageUrl" :alt="title" class="rounded-xl w-full h-48 object-cover" />
+                <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
+                    <div class="flex flex-row justify-between">
+                        <h3 class="text-2xl font-bold">{{ title }}</h3>
+                        <span class="text-lg text-green-500 font-medium">
+                            ${{ price }}
+                        </span>
+                    </div>
+                    <div>
+                        <p class="text-md">{{ description }}</p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-md">{{ description }}</p>
-                </div>
-            </div>
+            </NuxtLink>
         </template>
     </div>
 </template>
