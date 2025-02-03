@@ -1,11 +1,6 @@
-<script setup lang="ts">
-const { documentId } = useRoute().params;
-
-console.log(documentId);
-</script>
-
 <template>
     <div>
-        RECIPE
+        <PageHero title="Our recipes" description="Explore our delicious recipes" :showDietaryGuide="false" />
+        <RecipeSection />
     </div>
 </template>
