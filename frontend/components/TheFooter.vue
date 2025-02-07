@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const siteStore = useSiteStore()
+await siteStore.fetchSiteData()
+
 interface QuickLink {
     title: string;
     href: string;
@@ -36,7 +39,7 @@ const quickLinks: QuickLink[] = [
                 </div>
             </div>
             <div class="mt-8 py-8 border-t border-white/20 text-center text-white">
-                <p>© {{ new Date().getFullYear() }} Siam Kitchen. Made with ❤️ by VivienG</p>
+                <p>© {{ new Date().getFullYear() }} {{ siteStore.data?.data.siteName }}. Made with ❤️ by VivienG</p>
             </div>
         </Container>
     </footer>
