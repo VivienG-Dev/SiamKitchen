@@ -11,5 +11,11 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ['@nuxt/image'],
+  modules: ['@nuxt/image', '@pinia/nuxt'],
+
+  runtimeConfig: {
+    public: {
+      strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337'
+    }
+  }
 })
