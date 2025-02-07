@@ -1,0 +1,64 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dietary_tags",
+  "info": {
+    "singularName": "dietary-tag",
+    "pluralName": "dietary-tags",
+    "displayName": "Dietary Tag",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "dietaryTagTitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "dietaryTagDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "type": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "vegetarian",
+        "vegan",
+        "gluten_free",
+        "contains_meat",
+        "contains_seafood",
+        "spicy",
+        "halal",
+        "contains_dairy",
+        "contains_eggs",
+        "contains_nuts",
+        "common_allergens",
+        "heart_healthy"
+      ]
+    },
+    "dish": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::dishe.dishe",
+      "inversedBy": "dietary_tags"
+    }
+  }
+}
