@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Home, Menu, X } from 'lucide-vue-next'
+import { useSiteStore } from '~/stores/site'
+
+const siteStore = useSiteStore()
+await siteStore.fetchSiteData()
 
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
@@ -37,7 +41,7 @@ onUnmounted(() => {
             <!-- Brand -->
             <NuxtLink to="/" class="flex items-center space-x-2">
                 <Home class="w-6 h-6 text-blue-500" />
-                <span class="font-bold text-xl text-blue-500">Siam Kitchen</span>
+                <span class="font-bold text-xl text-blue-500">{{ siteStore.data?.data.siteName }}</span>
             </NuxtLink>
             <!-- Desktop navigation -->
             <div class="hidden md:flex space-x-4">
