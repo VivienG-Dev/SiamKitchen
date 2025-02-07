@@ -1,11 +1,21 @@
 <script setup lang="ts">
+interface ImageUrl {
+    url: string
+    formats: {
+        large?: { url: string } | null
+        medium?: { url: string } | null
+        small?: { url: string } | null
+        thumbnail?: { url: string } | null
+    }
+}
+
 interface Props {
-    title: string;
-    price: number;
-    description: string;
-    imageUrl: string;
-    loading?: boolean;
-    link?: string;
+    title: string
+    price: number
+    description: string
+    imageUrl: ImageUrl
+    loading?: boolean
+    link?: string
 }
 
 withDefaults(defineProps<Props>(), {
@@ -35,7 +45,8 @@ withDefaults(defineProps<Props>(), {
 
         <template v-else>
             <NuxtLink :to="link" :class="link ? 'cursor-pointer' : ''">
-                <NuxtImg :src="imageUrl" :alt="title" class="rounded-xl w-full h-48 object-cover" />
+                <NuxtImg :src="imageUrl.formats?.medium?.url || imageUrl.url" :alt="title"
+                    class="rounded-xl w-full h-48 object-cover" />
                 <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
                     <div class="flex flex-row justify-between">
                         <h3 class="text-2xl font-bold">{{ title }}</h3>
