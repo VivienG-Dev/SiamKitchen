@@ -5,6 +5,7 @@ interface Props {
     title: string;
     description: string;
     isOpen: boolean;
+    loading?: boolean;
 }
 
 defineProps<Props>();
@@ -17,9 +18,17 @@ const emit = defineEmits(['scroll']);
         class="bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 text-white p-4 m-4 h-[calc(100dvh-2rem)] rounded-4xl">
         <Container class="flex flex-col justify-center h-full relative">
             <div class="flex flex-col items-start">
-                <h1 class="text-5xl md:text-8xl font-bold">{{ title }}</h1>
-                <p class="text-lg md:text-2xl">{{ description }}</p>
-                <AppButton variant="primary" link="/menu">Explore Menu</AppButton>
+                <template v-if="loading">
+                    <div class="animate-pulse">
+                        <div class="h-20 bg-white/20 rounded w-3/4 mb-4"></div>
+                        <div class="h-8 bg-white/20 rounded w-1/2"></div>
+                    </div>
+                </template>
+                <template v-else>
+                    <h1 class="text-5xl md:text-8xl font-bold">{{ title }}</h1>
+                    <p class="text-lg md:text-2xl">{{ description }}</p>
+                    <AppButton variant="primary" link="/menu">Explore Menu</AppButton>
+                </template>
                 <div class="flex items-center gap-2 mt-4">
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
                         <div class="w-2 h-2 rounded-full" :class="isOpen ? 'bg-green-400 animate-pulse' : 'bg-red-400'">
