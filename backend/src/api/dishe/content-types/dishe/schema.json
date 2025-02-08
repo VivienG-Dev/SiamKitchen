@@ -75,8 +75,9 @@
     },
     "dish_category": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::dish-category.dish-category"
+      "relation": "manyToOne",
+      "target": "api::dish-category.dish-category",
+      "inversedBy": "dishes"
     },
     "dietary_tags": {
       "type": "relation",

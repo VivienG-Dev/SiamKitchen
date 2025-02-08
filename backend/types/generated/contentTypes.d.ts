@@ -512,7 +512,7 @@ export interface ApiDisheDishe extends Struct.CollectionTypeSchema {
       'api::dietary-tag.dietary-tag'
     >;
     dish_category: Schema.Attribute.Relation<
-      'oneToOne',
+      'manyToOne',
       'api::dish-category.dish-category'
     >;
     dishDescription: Schema.Attribute.Text &

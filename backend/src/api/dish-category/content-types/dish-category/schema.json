@@ -43,7 +43,8 @@
     "dishes": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::dishe.dishe"
+      "target": "api::dishe.dishe",
+      "mappedBy": "dish_category"
     }
   }
 }
