@@ -34,7 +34,7 @@ export const useDishesStore = defineStore('dishes', {
     actions: {
         async fetchDishes() {
             const config = useRuntimeConfig()
-            const { data, error } = await useFetch<DishesResponse>(`${config.public.strapiUrl}/api/dishes?populate=*`, {
+            const { data, error } = await useFetch<DishesResponse>(`${config.public.strapiUrl}/api/dishes?populate=*&filters[isFeatured][$eq]=true`, {
                 key: 'dishes-data',
                 server: true,
                 lazy: false,
