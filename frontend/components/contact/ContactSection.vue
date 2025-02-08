@@ -16,24 +16,22 @@ const formData = ref({
 const errors = ref<Record<string, string>>({})
 
 const handleSubmit = () => {
-    try {
-        formSchema.parse(formData.value)
-
-        alert(`Message received!\nFrom: ${formData.value.name}\nEmail: ${formData.value.email}\nMessage: ${formData.value.message}`)
-
-        formData.value = {
-            name: '',
-            email: '',
-            message: ''
-        }
-        errors.value = {}
-    } catch (error) {
-        if (error instanceof z.ZodError) {
-            errors.value = Object.fromEntries(
-                error.errors.map(err => [err.path[0], err.message])
-            )
-        }
+    const result = formSchema.safeParse(formData.value)
+    if (!result.success) {
+        errors.value = Object.fromEntries(
+            result.error.errors.map(err => [err.path[0], err.message])
+        )
+        return
     }
+
+    alert(`Message received!\nFrom: ${formData.value.name}\nEmail: ${formData.value.email}\nMessage: ${formData.value.message}`)
+
+    formData.value = {
+        name: '',
+        email: '',
+        message: ''
+    }
+    errors.value = {}
 }
 </script>
 
