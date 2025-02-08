@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import { Home, Menu, X } from 'lucide-vue-next'
-import { useSiteStore } from '~/stores/site'
 
 const siteStore = useSiteStore()
-await siteStore.fetchSiteData()
 
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)

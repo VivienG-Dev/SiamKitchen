@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
-import { useSiteStore } from '~/stores/site'
-
 const promotionsSection = ref<HTMLElement | null>(null)
 const siteStore = useSiteStore()
-await siteStore.fetchSiteData()
 
 const scrollToPromotions = () => {
     promotionsSection.value?.scrollIntoView({ behavior: 'smooth' })

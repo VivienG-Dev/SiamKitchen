@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const siteStore = useSiteStore()
-await siteStore.fetchSiteData()
 
 interface QuickLink {
     title: string;

@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useSiteStore } from '~/stores/site'
+const siteStore = useSiteStore()
+await siteStore.fetchSiteData()
+</script>
+
 <template>
   <div>
     <NuxtLoadingIndicator />
