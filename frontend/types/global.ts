@@ -6,7 +6,7 @@ const imageFormatSchema = z.object({
     height: z.number()
 })
 
-const imageSchema = z.object({
+export const imageSchema = z.object({
     alternativeText: z.string().nullable().optional(),
     formats: z.object({
         large: imageFormatSchema.optional(),
@@ -14,7 +14,7 @@ const imageSchema = z.object({
         small: imageFormatSchema.optional(),
         thumbnail: imageFormatSchema.optional()
     }),
-    url: z.string() // original size
+    url: z.string()
 })
 
 export const siteSchema = z.object({
