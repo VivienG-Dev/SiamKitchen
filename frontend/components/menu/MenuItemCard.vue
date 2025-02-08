@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
+interface DietaryTag {
+    id: number;
+    name: string;
+    description: string;
+    type: string;
+}
+
 interface Props {
     title: string;
     price: number;
@@ -8,12 +15,18 @@ interface Props {
     imageUrl: string;
     loading?: boolean;
     dietary?: string[];
-    dietaryIcons?: Array<{
+    dietaryIcons?: Readonly<Array<{
         icon: any;
         label: string;
         color: string;
         textColor: string;
-    }>;
+    }>>;
+    dish: {
+        title: string;
+        dietaryTags: {
+            data: DietaryTag[];
+        };
+    };
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -56,7 +69,7 @@ const activeIcons = computed(() =>
                         <!-- Tooltip -->
                         <div class="absolute bottom-full right-0 mb-2 hidden group-hover/icon:block z-10">
                             <div class="bg-gray-800 text-white text-xs rounded py-1 px-2 whitespace-nowrap">
-                                {{ icon.label }}
+                                {{ icon.label.replace('_', ' ').replace(/\b\w/g, char => char.toUpperCase()) }}
                             </div>
                         </div>
                     </div>
