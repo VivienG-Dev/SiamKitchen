@@ -1,18 +1,6 @@
 <script setup lang="ts">
-import {
-    Leaf,
-    FlameKindling,
-    CircleAlert,
-    Heart,
-    CircleDot,
-    Shell,
-    Coffee,
-    Sandwich,
-    Star,
-    BadgeAlert,
-    Apple,
-    CircleCheck
-} from 'lucide-vue-next';
+import { ref } from 'vue'
+import { dietaryIcons as constantDietaryIcons } from '~/constants/dietary'
 
 interface Props {
     title: string;
@@ -24,20 +12,12 @@ defineProps<Props>();
 
 const showDietaryIcons = ref(false);
 
-const dietaryIcons = [
-    { name: 'Vegetarian', icon: Leaf, color: 'bg-green-500', textColor: 'text-green-700' },
-    { name: 'Vegan', icon: Apple, color: 'bg-emerald-500', textColor: 'text-emerald-700' },
-    { name: 'Gluten-Free', icon: CircleCheck, color: 'bg-amber-500', textColor: 'text-amber-700' },
-    { name: 'Contains Meat', icon: Sandwich, color: 'bg-red-700', textColor: 'text-red-700' },
-    { name: 'Contains Seafood', icon: Shell, color: 'bg-blue-500', textColor: 'text-blue-700' },
-    { name: 'Spicy', icon: FlameKindling, color: 'bg-orange-500', textColor: 'text-orange-700' },
-    { name: 'Contains Dairy', icon: Coffee, color: 'bg-cyan-500', textColor: 'text-cyan-700' },
-    { name: 'Contains Eggs', icon: CircleDot, color: 'bg-yellow-500', textColor: 'text-yellow-700' },
-    { name: 'Heart Healthy', icon: Heart, color: 'bg-rose-500', textColor: 'text-rose-700' },
-    { name: 'Contains Nuts', icon: CircleAlert, color: 'bg-brown-500', textColor: 'text-brown-700' },
-    { name: 'Common Allergens', icon: BadgeAlert, color: 'bg-purple-500', textColor: 'text-purple-700' },
-    { name: 'Halal', icon: Star, color: 'bg-teal-500', textColor: 'text-teal-700' }
-];
+const mappedDietaryIcons = constantDietaryIcons.map((item) => ({
+    name: item.label.charAt(0).toUpperCase() + item.label.slice(1).replace('_', ' '),
+    icon: item.icon,
+    color: item.color,
+    textColor: item.textColor
+}));
 </script>
 
 <template>
@@ -63,7 +43,7 @@ const dietaryIcons = [
         leave-to-class="transform -translate-y-4 opacity-0">
         <div v-if="showDietaryIcons" class="bg-white shadow-lg rounded-xl p-6 mx-4 -mt-8 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-4">
-                <div v-for="item in dietaryIcons" :key="item.name"
+                <div v-for="item in mappedDietaryIcons" :key="item.name"
                     class="flex flex-col items-center p-2 md:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                     <div :class="['p-1.5 md:p-2 rounded-full mb-2', item.color]">
                         <component :is="item.icon" class="w-5 md:w-8 h-5 md:h-8 text-white" />
