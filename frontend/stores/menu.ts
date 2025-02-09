@@ -14,8 +14,9 @@ export const useMenuStore = defineStore('menu', {
             this.loading = true
             try {
                 const config = useRuntimeConfig()
+                const baseUrl = config.public.strapiUrl
                 const { data, error } = await useFetch<{ data: DishCategory[] }>(
-                    `${config.public.strapiUrl}/api/dish-categories?populate[dishes][populate][0]=dishImage&populate[dishes][populate][1]=dietary_tags`,
+                    `${baseUrl}/api/dish-categories?populate[dishes][populate][0]=dishImage&populate[dishes][populate][1]=dietary_tags`,
                     {
                         key: 'menu-data',
                         server: true,
@@ -32,7 +33,7 @@ export const useMenuStore = defineStore('menu', {
                                     dishes: {
                                         data: Array.isArray(category.dishes)
                                             ? category.dishes.map(dish => {
-                                                const imageUrl = dish.dishImage ? useFormatImageUrl(dish.dishImage) : null
+                                                const imageUrl = dish.dishImage ? useFormatImageUrl(dish.dishImage, baseUrl) : null
                                                 return {
                                                     id: dish.id,
                                                     dishTitle: dish.dishTitle,

@@ -13,9 +13,6 @@ const itemsByCategory = computed(() =>
         items: category.dishes.data
     })) ?? []
 )
-
-console.log('Processed itemsByCategory:', itemsByCategory.value)
-
 </script>
 
 <template>
