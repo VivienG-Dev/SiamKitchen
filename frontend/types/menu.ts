@@ -27,6 +27,7 @@ export const DishCategorySchema = z.object({
     id: z.number(),
     dishCategoryTitle: z.string(),
     dishCategoryDescription: z.string(),
+    displayOrder: z.number(),
     dishes: z.object({
         data: z.array(DishSchema)
     })

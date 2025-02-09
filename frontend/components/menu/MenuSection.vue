@@ -10,8 +10,9 @@ const itemsByCategory = computed(() =>
         id: category.id,
         name: category.dishCategoryTitle,
         description: category.dishCategoryDescription,
-        items: category.dishes.data
-    })) ?? []
+        items: category.dishes.data,
+        order: category.displayOrder
+    })).sort((a, b) => a.order - b.order) ?? []
 )
 </script>
 

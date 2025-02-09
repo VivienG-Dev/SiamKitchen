@@ -30,6 +30,7 @@ export const useMenuStore = defineStore('menu', {
                                     id: category.id,
                                     dishCategoryTitle: category.dishCategoryTitle,
                                     dishCategoryDescription: category.dishCategoryDescription,
+                                    displayOrder: category.displayOrder,
                                     dishes: {
                                         data: Array.isArray(category.dishes)
                                             ? category.dishes.map(dish => {
