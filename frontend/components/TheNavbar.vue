@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Home, Menu, X } from 'lucide-vue-next'
-
 const siteStore = useSiteStore()
+import { debounce } from 'lodash'
 
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
@@ -18,9 +18,9 @@ function toggleMobileMenu() {
     mobileMenuOpen.value = !mobileMenuOpen.value
 }
 
-const handleScroll = () => {
+const handleScroll = debounce(() => {
     isScrolled.value = window.scrollY > 20
-}
+}, 50)
 
 onMounted(() => {
     window.addEventListener('scroll', handleScroll)
