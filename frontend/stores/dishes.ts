@@ -10,27 +10,26 @@ export const useDishesStore = defineStore('dishes', {
         error: null as string | null
     }),
 
-    getters: {
-        featuredDishes: (state) => state.data?.filter(dish => dish.isFeatured).map(dish => {
-            const image = dish.dishImage
-            const imageUrl = useFormatImageUrl(image)
-            return {
-                title: dish.dishTitle,
-                price: dish.dishPrice,
-                description: dish.dishDescription,
-                imageUrl
-            }
-        }) ?? []
-    },
-
     actions: {
         async fetchDishes() {
             const config = useRuntimeConfig()
-            const { data, error } = await useFetch<DishesResponse>(`${config.public.strapiUrl}/api/dishes?populate=*&filters[isFeatured][$eq]=true`, {
+            const baseUrl = config.public.strapiUrl
+            const { data, error } = await useFetch<DishesResponse>(`${baseUrl}/api/dishes?populate=*&filters[isFeatured][$eq]=true`, {
                 key: 'dishes-data',
                 server: true,
                 lazy: false,
-                transform: (response) => dishesResponseSchema.parse(response)
+                transform: (response) => {
+                    const parsed = dishesResponseSchema.parse(response)
+                    if (parsed.data) {
+                        parsed.data = parsed.data.map(dish => {
+                            if (dish.dishImage) {
+                                dish.dishImage = useFormatImageUrl(dish.dishImage, baseUrl)
+                            }
+                            return dish
+                        })
+                    }
+                    return parsed
+                }
             })
 
             if (error.value) {

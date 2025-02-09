@@ -16,7 +16,8 @@ await dishesStore.fetchDishes()
                         :imageUrl="{ url: '', formats: { large: null, medium: null, small: null, thumbnail: null } }" />
                 </template>
                 <template v-else>
-                    <ItemCard v-for="dish in dishesStore.featuredDishes" :key="dish.title" v-bind="dish" />
+                    <ItemCard v-for="dish in dishesStore.data" :key="dish.id" :title="dish.dishTitle"
+                        :description="dish.dishDescription" :price="dish.dishPrice" :imageUrl="dish.dishImage" />
                 </template>
             </div>
             <div class="flex justify-center">
