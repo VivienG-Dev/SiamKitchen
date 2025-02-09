@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { DishCategory } from '~/types/menu'
+import { useFormatImageUrl } from '~/composables/useFormatImageUrl'
 
 export const useMenuStore = defineStore('menu', {
     state: () => ({
@@ -30,40 +31,25 @@ export const useMenuStore = defineStore('menu', {
                                     dishCategoryDescription: category.dishCategoryDescription,
                                     dishes: {
                                         data: Array.isArray(category.dishes)
-                                            ? category.dishes.map(dish => ({
-                                                id: dish.id,
-                                                dishTitle: dish.dishTitle,
-                                                dishPrice: dish.dishPrice,
-                                                dishDescription: dish.dishDescription,
-                                                dishImage: dish.dishImage ? {
-                                                    alternativeText: dish.dishImage.alternativeText,
-                                                    url: `${config.public.strapiUrl}${dish.dishImage.url}`,
-                                                    formats: {
-                                                        ...dish.dishImage.formats,
-                                                        small: dish.dishImage.formats.small
-                                                            ? { ...dish.dishImage.formats.small, url: `${config.public.strapiUrl}${dish.dishImage.formats.small.url}` }
-                                                            : null,
-                                                        medium: dish.dishImage.formats.medium
-                                                            ? { ...dish.dishImage.formats.medium, url: `${config.public.strapiUrl}${dish.dishImage.formats.medium.url}` }
-                                                            : null,
-                                                        large: dish.dishImage.formats.large
-                                                            ? { ...dish.dishImage.formats.large, url: `${config.public.strapiUrl}${dish.dishImage.formats.large.url}` }
-                                                            : null,
-                                                        thumbnail: dish.dishImage.formats.thumbnail
-                                                            ? { ...dish.dishImage.formats.thumbnail, url: `${config.public.strapiUrl}${dish.dishImage.formats.thumbnail.url}` }
-                                                            : null
-                                                    }
-                                                } : null,
-                                                dietaryTags: {
-                                                    data: dish.dietary_tags?.map((tag: any) => ({
-                                                        id: tag.id,
-                                                        name: tag.dietaryTagTitle,
-                                                        description: tag.dietaryTagDescription,
-                                                        type: tag.type
-                                                    })) || []
-                                                },
-                                                category: { data: category }
-                                            }))
+                                            ? category.dishes.map(dish => {
+                                                const imageUrl = dish.dishImage ? useFormatImageUrl(dish.dishImage) : null
+                                                return {
+                                                    id: dish.id,
+                                                    dishTitle: dish.dishTitle,
+                                                    dishPrice: dish.dishPrice,
+                                                    dishDescription: dish.dishDescription,
+                                                    dishImage: imageUrl,
+                                                    dietaryTags: {
+                                                        data: dish.dietary_tags?.map((tag: any) => ({
+                                                            id: tag.id,
+                                                            name: tag.dietaryTagTitle,
+                                                            description: tag.dietaryTagDescription,
+                                                            type: tag.type
+                                                        })) || []
+                                                    },
+                                                    category: { data: category }
+                                                }
+                                            })
                                             : []
                                     }
                                 }))

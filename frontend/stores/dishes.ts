@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type { Dish, DishesResponse } from '~/types/dishes'
 import { dishesResponseSchema } from '~/types/dishes'
+import { useFormatImageUrl } from '~/composables/useFormatImageUrl'
 
 export const useDishesStore = defineStore('dishes', {
     state: () => ({
@@ -11,22 +12,13 @@ export const useDishesStore = defineStore('dishes', {
 
     getters: {
         featuredDishes: (state) => state.data?.filter(dish => dish.isFeatured).map(dish => {
-            const baseUrl = useRuntimeConfig().public.strapiUrl
             const image = dish.dishImage
-
+            const imageUrl = useFormatImageUrl(image)
             return {
                 title: dish.dishTitle,
                 price: dish.dishPrice,
                 description: dish.dishDescription,
-                imageUrl: {
-                    url: `${baseUrl}${image.url}`,
-                    formats: {
-                        large: image.formats.large ? { url: `${baseUrl}${image.formats.large.url}` } : null,
-                        medium: image.formats.medium ? { url: `${baseUrl}${image.formats.medium.url}` } : null,
-                        small: image.formats.small ? { url: `${baseUrl}${image.formats.small.url}` } : null,
-                        thumbnail: image.formats.thumbnail ? { url: `${baseUrl}${image.formats.thumbnail.url}` } : null
-                    }
-                }
+                imageUrl
             }
         }) ?? []
     },
