@@ -11,7 +11,7 @@ interface ImageUrl {
 
 interface Props {
     title: string
-    price: number
+    price?: number
     description: string
     imageUrl: ImageUrl
     loading?: boolean
@@ -33,7 +33,7 @@ withDefaults(defineProps<Props>(), {
                 <div class="flex flex-col gap-2 p-4">
                     <div class="flex justify-between items-center">
                         <div class="h-8 bg-gray-200 rounded w-1/2" /> <!-- Title skeleton -->
-                        <div class="h-6 bg-gray-200 rounded w-16" /> <!-- Price skeleton -->
+                        <div v-if="price" class="h-6 bg-gray-200 rounded w-16" /> <!-- Price skeleton -->
                     </div>
                     <div class="space-y-2">
                         <div class="h-4 bg-gray-200 rounded w-full" /> <!-- Description line 1 -->
@@ -50,7 +50,7 @@ withDefaults(defineProps<Props>(), {
                 <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
                     <div class="flex flex-row justify-between">
                         <h3 class="text-2xl font-bold">{{ title }}</h3>
-                        <span class="text-lg text-green-500 font-medium">
+                        <span v-if="price" class="text-lg text-green-500 font-medium">
                             ${{ price }}
                         </span>
                     </div>
