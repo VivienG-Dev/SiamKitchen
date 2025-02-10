@@ -1,42 +1,21 @@
 <script setup lang="ts">
 const { documentId } = useRoute().params;
-console.log(documentId);
+const recipeStore = useRecipeStore()
+await recipeStore.fetchRecipe(documentId as string)
 
-interface Recipe {
-    title: string;
-    description: string;
-    imageUrl: string;
-}
+import MarkdownIt from 'markdown-it';
+const md = new MarkdownIt();
 
-const isLoading = ref(true);
-const recipe = ref<Recipe>({} as Recipe);
-
-onMounted(async () => {
-    try {
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
-
-        const recipeData: Recipe = {
-            title: 'Pad Thai',
-            description: 'A popular Thai dish made with stir-fried noodles, vegetables, and a flavorful sauce.',
-            imageUrl: '/pad-thai.jpg',
-        };
-
-        recipe.value = recipeData;
-    } catch (error) {
-        console.error('Error loading recipes:', error);
-    } finally {
-        isLoading.value = false;
-    }
+const markdownContent = computed(() => {
+    return recipeStore.recipe?.recipeContent ? md.render(recipeStore.recipe.recipeContent) : '';
 });
 </script>
 
 <template>
     <section class="text-black px-4 md:px-4 lg:px-4 xl:px-0">
         <Container class="flex flex-col justify-center h-full">
-            <div
-                class="flex-1 flex flex-col h-auto bg-white p-2 shadow-sm hover:shadow-lg rounded-xl transition-shadow duration-300 hover:shadow-blue-300/50 mx-auto w-full md:w-4xl">
-                <template v-if="isLoading">
+            <div class="flex-1 flex flex-col h-auto bg-white p-2 shadow-sm rounded-xl mx-auto w-full md:w-4xl">
+                <template v-if="recipeStore.loading">
                     <div class="animate-pulse">
                         <div class="rounded-xl w-full h-48 bg-gray-200" /> <!-- Image skeleton -->
                         <div class="flex flex-col gap-2 p-4">
@@ -53,13 +32,14 @@ onMounted(async () => {
                 </template>
 
                 <template v-else>
-                    <NuxtImg :src="recipe.imageUrl" :alt="recipe.title" class="rounded-xl w-full h-48 object-cover" />
+                    <NuxtImg :src="recipeStore.recipe?.recipeImage?.formats?.large?.url"
+                        :alt="recipeStore.recipe?.recipeTitle" class="rounded-xl w-full h-48 md:h-96 object-cover" />
                     <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
                         <div class="flex flex-row justify-between">
-                            <h3 class="text-2xl font-bold">{{ recipe.title }}</h3>
+                            <h3 class="text-2xl font-bold">{{ recipeStore.recipe?.recipeTitle }}</h3>
                         </div>
-                        <div>
-                            <p class="text-md">{{ recipe.description }}</p>
+                        <div class="recipe-markdown">
+                            <div v-html="markdownContent" class="text-md"></div>
                         </div>
                     </div>
                 </template>
@@ -67,3 +47,18 @@ onMounted(async () => {
         </Container>
     </section>
 </template>
+
+<style scoped>
+/* Use the deep selector to target elements inside the v-html content */
+/* This is the only way I found to style the markdown content 'properly' from Strapi 5 */
+::v-deep .recipe-markdown p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+::v-deep .recipe-markdown hr {
+    margin: 1rem 0 1rem 0;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+</style>
