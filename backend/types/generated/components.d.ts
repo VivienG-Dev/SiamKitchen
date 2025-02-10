@@ -3,6 +3,7 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface AboutBlockAbout extends Struct.ComponentSchema {
   collectionName: 'components_about_block_abouts';
   info: {
+    description: '';
     displayName: 'About';
     icon: 'quote';
   };
@@ -13,6 +14,7 @@ export interface AboutBlockAbout extends Struct.ComponentSchema {
     >;
     aboutBlockOrder: Schema.Attribute.Integer;
     aboutBlockTitle: Schema.Attribute.String;
+    aboutBlockYear: Schema.Attribute.BigInteger;
   };
 }
 
