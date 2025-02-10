@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_about_block_abouts",
+  "info": {
+    "displayName": "About",
+    "icon": "quote"
+  },
+  "options": {},
+  "attributes": {
+    "aboutBlockTitle": {
+      "type": "string"
+    },
+    "aboutBlockDescription": {
+      "type": "text"
+    },
+    "aboutBlockImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "aboutBlockOrder": {
+      "type": "integer"
+    }
+  }
+}

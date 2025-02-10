@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_team_teams",
+  "info": {
+    "displayName": "Team",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "teamName": {
+      "type": "string"
+    },
+    "teamDescription": {
+      "type": "text"
+    },
+    "teamRole": {
+      "type": "string"
+    },
+    "teamImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
