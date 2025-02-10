@@ -51,12 +51,12 @@ const markdownContent = computed(() => {
 <style scoped>
 /* Use the deep selector to target elements inside the v-html content */
 /* This is the only way I found to style the markdown content 'properly' from Strapi 5 */
-::v-deep .recipe-markdown p {
+:deep(.recipe-markdown p) {
     margin-bottom: 1rem;
     line-height: 1.6;
 }
 
-::v-deep .recipe-markdown hr {
+:deep(.recipe-markdown hr) {
     margin: 1rem 0 1rem 0;
     border: none;
     border-top: 1px solid #ddd;
