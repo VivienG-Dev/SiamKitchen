@@ -30,5 +30,10 @@ export const recipesResponseSchema = z.object({
     data: z.array(recipeSchema)
 })
 
+export const recipeResponseSchema = z.object({
+    data: recipeSchema
+})
+
 export type Recipe = z.infer<typeof recipeSchema>
 export type RecipesResponse = z.infer<typeof recipesResponseSchema>
+export type RecipeResponse = z.infer<typeof recipeResponseSchema>
