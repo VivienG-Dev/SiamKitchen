@@ -17,5 +17,13 @@ export default defineNuxtConfig({
     public: {
       strapiUrl: process.env.STRAPI_URL || 'http://localhost:1337'
     }
+  },
+
+  routeRules: {
+    '/': { swr: 43200 }, // 12 hours
+    '/menu': { swr: 3600 }, // 1 hour
+    '/recipes/**': { swr: 43200 }, // 12 hours
+    '/about': { swr: 43200 }, // 12 hours
+    '/contact': { swr: 86400 }, // 24 hours
   }
 })
