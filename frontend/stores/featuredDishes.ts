@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import type { Dish, DishesResponse } from '~/types/dishes'
-import { dishesResponseSchema } from '~/types/dishes'
+import type { Dish, DishesResponse } from '~/types/featuredDishes'
+import { dishesResponseSchema } from '~/types/featuredDishes'
 import { useFormatImageUrl } from '~/composables/useFormatImageUrl'
 
 export const useDishesStore = defineStore('dishes', {
@@ -11,7 +11,7 @@ export const useDishesStore = defineStore('dishes', {
     }),
 
     actions: {
-        async fetchDishes() {
+        async fetchFeaturedDishes() {
             const config = useRuntimeConfig()
             const baseUrl = config.public.strapiUrl
             const { data, error } = await useFetch<DishesResponse>(`${baseUrl}/api/dishes?populate=*&filters[isFeatured][$eq]=true`, {

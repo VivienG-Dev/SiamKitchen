@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useDishesStore } from '~/stores/dishes'
+import { useDishesStore } from '~/stores/featuredDishes'
 
 const dishesStore = useDishesStore()
-await dishesStore.fetchDishes()
+await dishesStore.fetchFeaturedDishes()
 </script>
 
 <template>
