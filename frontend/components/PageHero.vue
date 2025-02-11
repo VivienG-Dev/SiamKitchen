@@ -19,6 +19,10 @@ const mappedDietaryIcons = constantDietaryIcons.map((item) => ({
     color: item.color,
     textColor: item.textColor
 }));
+
+const isMenuPage = computed(() => {
+    return useRoute().path.includes('menu')
+})
 </script>
 
 <template>
@@ -27,7 +31,7 @@ const mappedDietaryIcons = constantDietaryIcons.map((item) => ({
             class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" alt="" />
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 opacity-60 -z-20"></div>
 
-        <Container class="flex flex-col items-center justify-center h-full">
+        <Container class="flex flex-col items-center justify-center h-full" :class="{ 'mt-8': isMenuPage }">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl md:text-4xl font-bold">{{ title }}</h1>
                 <p class="text-lg md:text-2xl">{{ description }}</p>
