@@ -689,6 +689,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiMenuPageMenuPage extends Struct.SingleTypeSchema {
   collectionName: 'menu_pages';
   info: {
+    description: '';
     displayName: 'Menu Page';
     pluralName: 'menu-pages';
     singularName: 'menu-page';
@@ -717,8 +718,7 @@ export interface ApiMenuPageMenuPage extends Struct.SingleTypeSchema {
         };
       }>;
     menuPageImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
+      'images' | 'files' | 'videos' | 'audios'
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -732,6 +732,57 @@ export interface ApiMenuPageMenuPage extends Struct.SingleTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRecipePageRecipePage extends Struct.SingleTypeSchema {
+  collectionName: 'recipe_pages';
+  info: {
+    displayName: 'Recipe Page';
+    pluralName: 'recipe-pages';
+    singularName: 'recipe-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::recipe-page.recipe-page'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    recipePageDescription: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    recipePageImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    recipePageTitle: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1313,6 +1364,7 @@ declare module '@strapi/strapi' {
       'api::dishe.dishe': ApiDisheDishe;
       'api::global.global': ApiGlobalGlobal;
       'api::menu-page.menu-page': ApiMenuPageMenuPage;
+      'api::recipe-page.recipe-page': ApiRecipePageRecipePage;
       'api::recipe.recipe': ApiRecipeRecipe;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

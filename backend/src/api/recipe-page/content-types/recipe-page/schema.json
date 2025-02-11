@@ -1,11 +1,10 @@
 {
   "kind": "singleType",
-  "collectionName": "menu_pages",
+  "collectionName": "recipe_pages",
   "info": {
-    "singularName": "menu-page",
-    "pluralName": "menu-pages",
-    "displayName": "Menu Page",
-    "description": ""
+    "singularName": "recipe-page",
+    "pluralName": "recipe-pages",
+    "displayName": "Recipe Page"
   },
   "options": {
     "draftAndPublish": true
@@ -16,7 +15,7 @@
     }
   },
   "attributes": {
-    "menuPageTitle": {
+    "recipePageTitle": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -24,7 +23,7 @@
       },
       "type": "string"
     },
-    "menuPageDescription": {
+    "recipePageDescription": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -32,16 +31,15 @@
       },
       "type": "text"
     },
-    "menuPageImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "recipePageImage": {
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
+      "type": "media",
+      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
