@@ -6,6 +6,7 @@ interface Props {
     description: string;
     isOpen: boolean;
     loading?: boolean;
+    heroImageUrl?: string | null;
 }
 
 defineProps<Props>();
@@ -14,8 +15,11 @@ const emit = defineEmits(['scroll']);
 </script>
 
 <template>
-    <section
-        class="bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 text-white p-4 m-4 h-[calc(100dvh-2rem)] rounded-4xl">
+    <section class="relative text-white p-4 m-4 h-[calc(100dvh-2rem)] rounded-4xl overflow-hidden">
+        <NuxtImg v-if="heroImageUrl" :src="heroImageUrl"
+            class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" alt="" />
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 opacity-60 -z-20"></div>
+
         <Container class="flex flex-col justify-center h-full relative">
             <div class="flex flex-col items-start">
                 <template v-if="loading">
