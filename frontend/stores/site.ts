@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 import type { SiteData } from '~/types/global'
+import { siteSchema } from '~/types/global'
+import { useFormatImageUrl } from '~/composables/useFormatImageUrl'
 
 export const useSiteStore = defineStore('site', {
     state: () => ({
@@ -9,25 +11,24 @@ export const useSiteStore = defineStore('site', {
     }),
 
     getters: {
-        heroImageUrl: (state) => state.data?.data.heroImage
-            ? `${useRuntimeConfig().public.strapiUrl}${state.data.data.heroImage.url}`
-            : null
+        heroImageUrl: (state) => state.data?.data.heroImage?.url || null
     },
 
     actions: {
         async fetchSiteData() {
             const config = useRuntimeConfig()
-            const { data, error } = await useFetch<SiteData>(`${config.public.strapiUrl}/api/global?populate=*`, {
+            const baseUrl = config.public.strapiUrl
+            const { data, error } = await useFetch<SiteData>(`${baseUrl}/api/global?populate=*`, {
                 key: 'site-data',
                 server: true,
                 lazy: false,
-                transform: (data) => ({
-                    data: {
-                        siteName: data.data.siteName,
-                        siteDescription: data.data.siteDescription,
-                        heroImage: data.data.heroImage
+                transform: (data) => {
+                    const parsed = siteSchema.parse(data)
+                    if (parsed.data && parsed.data.heroImage) {
+                        parsed.data.heroImage = useFormatImageUrl(parsed.data.heroImage, baseUrl)
                     }
-                }),
+                    return parsed
+                },
                 getCachedData: (key) => {
                     const nuxtApp = useNuxtApp()
                     return nuxtApp.isHydrating
