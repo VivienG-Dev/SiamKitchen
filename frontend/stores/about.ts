@@ -10,6 +10,10 @@ export const useAboutStore = defineStore('about', {
         error: null as string | null
     }),
 
+    getters: {
+        aboutPageImageUrl: (state) => state.data?.data.aboutPageImage?.url || null
+    },
+
     actions: {
         async fetchAbout() {
             const config = useRuntimeConfig()

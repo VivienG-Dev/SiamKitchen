@@ -6,6 +6,7 @@ interface Props {
     title: string;
     description: string;
     showDietaryGuide?: boolean;
+    heroImageUrl?: string | null | undefined;
 }
 
 defineProps<Props>();
@@ -21,8 +22,11 @@ const mappedDietaryIcons = constantDietaryIcons.map((item) => ({
 </script>
 
 <template>
-    <section
-        class="bg-gradient-to-br from-blue-400 via-blue-300 to-green-300 text-white p-4 m-4 h-[15rem] md:h-[20rem] rounded-4xl">
+    <section class="relative text-white p-4 m-4 h-[15rem] md:h-[20rem] rounded-4xl overflow-hidden">
+        <NuxtImg v-if="heroImageUrl" :src="heroImageUrl"
+            class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" alt="" />
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 opacity-60 -z-20"></div>
+
         <Container class="flex flex-col items-center justify-center h-full">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl md:text-4xl font-bold">{{ title }}</h1>
