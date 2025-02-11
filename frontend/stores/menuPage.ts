@@ -11,7 +11,7 @@ export const useMenuPageStore = defineStore('menuPage', {
     }),
 
     getters: {
-        menuPageImageUrl: (state) => state.data?.menuPageImage?.[0]?.url || null
+        menuPageImageUrl: (state) => state.data?.menuPageImage?.url || null
     },
 
     actions: {
@@ -27,7 +27,7 @@ export const useMenuPageStore = defineStore('menuPage', {
                 transform: (response) => {
                     const parsed = menuPageResponseSchema.parse(response)
                     if (parsed.data && parsed.data.menuPageImage) {
-                        parsed.data.menuPageImage = parsed.data.menuPageImage.map(image => useFormatImageUrl(image, baseUrl))
+                        parsed.data.menuPageImage = useFormatImageUrl(parsed.data.menuPageImage, baseUrl)
                     }
                     return parsed
                 }
