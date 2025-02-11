@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const recipePageStore = useRecipePageStore()
 await recipePageStore.fetchRecipePageData()
+
+usePreloadImage(recipePageStore.recipePageImageUrl)
 </script>
 
 <template>

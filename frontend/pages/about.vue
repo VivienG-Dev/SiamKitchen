@@ -2,9 +2,7 @@
 const aboutStore = useAboutStore()
 await aboutStore.fetchAbout()
 
-useHead(() => ({
-    link: aboutStore.aboutPageImageUrl ? [{ rel: 'preload', href: aboutStore.aboutPageImageUrl, as: 'image' }] : []
-}))
+usePreloadImage(aboutStore.aboutPageImageUrl)
 </script>
 
 <template>

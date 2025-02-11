@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const contactPageStore = useContactPageStore()
 await contactPageStore.fetchContactPageData()
+
+usePreloadImage(contactPageStore.contactPageImageUrl)
 </script>
 
 <template>

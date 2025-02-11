@@ -2,9 +2,7 @@
 const promotionsSection = ref<HTMLElement | null>(null)
 const siteStore = useSiteStore()
 
-useHead(() => ({
-    link: siteStore.heroImageUrl ? [{ rel: 'preload', href: siteStore.heroImageUrl, as: 'image' }] : []
-}))
+usePreloadImage(siteStore.heroImageUrl)
 
 const scrollToPromotions = () => {
     promotionsSection.value?.scrollIntoView({ behavior: 'smooth' })

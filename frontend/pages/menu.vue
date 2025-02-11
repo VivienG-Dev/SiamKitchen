@@ -4,9 +4,7 @@ import { useMenuPageStore } from '~/stores/menuPage'
 const menuPageStore = useMenuPageStore()
 await menuPageStore.fetchMenuPageData()
 
-useHead(() => ({
-    link: menuPageStore.menuPageImageUrl ? [{ rel: 'preload', href: menuPageStore.menuPageImageUrl, as: 'image' }] : []
-}))
+usePreloadImage(menuPageStore.menuPageImageUrl)
 </script>
 
 <template>
