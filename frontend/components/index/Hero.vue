@@ -5,7 +5,7 @@ interface Props {
     title: string;
     description: string;
     isOpen: boolean;
-    loading?: boolean;
+    isLoading?: boolean;
     heroImageUrl?: string | null;
     openingHours: OpeningHour[];
 }
@@ -30,7 +30,7 @@ const emit = defineEmits(['scroll']);
 
         <Container class="flex flex-col justify-center h-full relative">
             <div class="flex flex-col items-start">
-                <template v-if="loading">
+                <template v-if="isLoading">
                     <div class="animate-pulse">
                         <div class="h-20 bg-white/20 rounded w-3/4 mb-4"></div>
                         <div class="h-8 bg-white/20 rounded w-1/2"></div>
@@ -43,8 +43,12 @@ const emit = defineEmits(['scroll']);
                 </template>
                 <div class="flex items-center gap-2 mt-4">
                     <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
-                        <div class="w-2 h-2 rounded-full" :class="isOpen ? 'bg-green-400 animate-pulse' : 'bg-red-400'">
-                        </div>
+                        <span class="relative flex size-3">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+                                :class="isOpen ? 'bg-green-400' : 'bg-red-400'"></span>
+                            <span class="relative inline-flex size-3 rounded-full"
+                                :class="isOpen ? 'bg-green-400' : 'bg-red-400'"></span>
+                        </span>
                         <span class="text-sm font-medium">
                             {{ isOpen ? 'Open Now' : 'Closed' }} · {{ openingHours.find(hour => hour.openingHoursDay ===
                                 'Monday')?.startingTime }} -

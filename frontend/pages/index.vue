@@ -15,7 +15,7 @@ const scrollToPromotions = () => {
             :title="siteStore.data?.data.siteName ?? 'Siam ???'"
             :description="siteStore.data?.data.siteDescription ?? 'The family-owned restaurant that specializes in traditional Thai cuisine.'"
             :isOpen="siteStore.isOpen" @scroll="scrollToPromotions" :loading="siteStore.loading"
-            :openingHours="siteStore.formattedOpeningHours" />
+            :openingHours="siteStore.formattedOpeningHours" :isLoading="siteStore.loading" />
 
         <IndexPromotions ref="promotionsSection" />
 
