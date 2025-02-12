@@ -20,7 +20,6 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    '/': { swr: 43200 }, // 12 hours
     '/menu': { swr: 3600 }, // 1 hour
     '/recipes/**': { swr: 43200 }, // 12 hours
     '/about': { swr: 43200 }, // 12 hours
