@@ -1,61 +1,98 @@
-# 🚀 Getting started with Strapi
+# Thai Restaurant Website - Strapi Backend
 
-Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
+The backend CMS for the Thai Restaurant Website, built with Strapi. This provides content management for menus, recipes, and restaurant information.
 
-### `develop`
+## 🌟 Features
 
-Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
+- **Menu Management**: Pre-configured content types for menu items and categories
+- **Recipe Section**: Dedicated content type for sharing restaurant recipes
+- **Opening Hours**: Flexible scheduling system for restaurant hours
+- **Media Library**: Organized structure for food and ambiance images
+- **Multi-language**: Support for multiple language content
+- **Role-Based Access**: Preconfigured user roles and permissions
 
-```
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (>=18.0.0)
+- MySQL (for production) or SQLite (for development)
+- npm
+
+### Installation
+
+1. Setup Strapi Backend:
+```bash
+cd backend
+npm install
 npm run develop
-# or
-yarn develop
 ```
 
-### `start`
+2. First-time Setup:
+   - Access admin panel at `http://localhost:1337/admin`
+   - Create your admin account
+   - Import database schema: `backend/schema/schema.sql`
+   - Generate API token: Settings > API Tokens
 
-Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
-
-```
-npm run start
-# or
-yarn start
-```
-
-### `build`
-
-Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
-
-```
-npm run build
-# or
-yarn build
+3. Create `.env` file:
+```bash
+cp .env.example .env
 ```
 
-## ⚙️ Deployment
+Fill in the following environment variables:
+```env
+# Database Configuration
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+DATABASE_NAME=the_database_name
+DATABASE_USERNAME=your_username
+DATABASE_PASSWORD=your_password
 
-Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+# Admin Configuration
+ADMIN_JWT_SECRET=your_jwt_secret    # Generate a secure random string
+API_TOKEN_SALT=your_token_salt      # Generate a secure random string
 
+# Media Configuration
+STRAPI_UPLOAD_PROVIDER=local        # or 'cloudinary' for production
 ```
-yarn strapi deploy
-```
 
-## 📚 Learn more
+### Content Structure
 
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+The CMS comes pre-configured with:
 
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+#### Menu Management
+- Categories (appetizers, main courses, desserts)
+- Menu items with prices, descriptions, and dietary information
+- Special offers and promotions
 
-## ✨ Community
+#### Recipe Section
+- Detailed recipe content type
+- Ingredient lists
+- Step-by-step instructions
+- Cooking tips
 
-- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
-- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
-- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+#### Restaurant Information
+- Opening hours
+- Contact details
+- Location data
+- About us content
 
----
+## 📦 Project Structure
 
-<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+Key directories in the Strapi backend:
+
+- `config`: API and plugin configurations
+- `src/api`: Content type definitions
+- `src/components`: Reusable content components
+- `database`: Database configurations
+- `public/uploads`: Media storage (development)
+
+## 🛠 Built With
+
+- [Strapi](https://strapi.io/) - Headless CMS
+- [MySQL](https://www.mysql.com/) - Database (Production)
+- [SQLite](https://www.sqlite.org/) - Database (Development)
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

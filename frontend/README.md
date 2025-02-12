@@ -1,75 +1,87 @@
-# Nuxt Minimal Starter
+# Thai Restaurant Website
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern, full-stack restaurant website built with Nuxt 3 and Strapi CMS. Features a responsive design, multilingual support, and real-time opening hours.
+This project was made to testing the Strapi CMS and improve my skills with Nuxt 3.
 
-## Setup
+## 🌟 Features
 
-Make sure to install dependencies:
+- **Modern Stack**: Built with Nuxt 3 (Vue.js) and Strapi CMS
+- **Responsive Design**: Mobile-first approach with Tailwind CSS 4
+- **Real-time Status**: Shows if the restaurant is currently open
+- **Menu Management**: Easy-to-update menu items with categories
+- **Recipe Section**: Share your restaurant's recipes with customers
+- **Image Optimization**: Automatic image optimization and responsive images
+- **SEO Friendly**: Built-in SEO optimization with dynamic meta tags
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (>=18.0.0)
+- MySQL (for production) or SQLite (for development)
+- npm
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-# npm
+git clone https://github.com/VivienG-Dev/SiamKitchen.git
+cd restaurant-website
+```
+
+2. Install dependencies:
+
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+3. Create a `.env` file in the root directory:
 
 ```bash
-# npm
+cp .env.example .env
+```
+
+Fill in the following environment variables in your `.env` file:
+
+```env
+# Frontend Configuration
+STRAPI_URL=http://localhost:1337  # Strapi API base URL
+SITE_URL=http://localhost:3000      # Frontend URL
+NUXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_strapi_token      # API key for Google Maps
+```
+
+4. Start the development server:
+
+```bash
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+5. Open your browser and navigate to `http://localhost:3000` to see the website.
 
-Build the application for production:
+## 📦 Project Structure
 
-```bash
-# npm
-npm run build
+The project is organized into the following directories:
 
-# pnpm
-pnpm build
+- `components`: Reusable Vue components
+- `composables`: Composables for reusable logic
+- `constants`: Constants for dietary icons
+- `layouts`: Layout files for different pages
+- `pages`: Page components
+- `public`: Static assets
+- `server`: Strapi server configuration
+- `stores`: Pinia store
+- `types`: TypeScript types using zod
 
-# yarn
-yarn build
+## 🛠 Built With
 
-# bun
-bun run build
-```
+- [Nuxt 3](https://nuxt.com/) - The Vue.js Framework
+- [Strapi](https://strapi.io/) - Headless CMS
+- [Tailwind CSS](https://tailwindcss.com/) - CSS Framework
+- [Pinia](https://pinia.vuejs.org/) - State Management
+- [TypeScript](https://www.typescriptlang.org/) - Type Safety
+- [Zod](https://zod.dev/) - Schema Validation
 
-Locally preview production build:
+## 📝 License
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+This project is licensed under the MIT License - see the LICENSE file for details.
