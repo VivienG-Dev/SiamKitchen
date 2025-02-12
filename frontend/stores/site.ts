@@ -11,7 +11,40 @@ export const useSiteStore = defineStore('site', {
     }),
 
     getters: {
-        heroImageUrl: (state) => state.data?.data.heroImage?.url || null
+        heroImageUrl: (state) => state.data?.data.heroImage?.url || null,
+        formattedOpeningHours: (state) => {
+            return (state.data?.data.openingHours ?? []).map(hour => {
+                if (hour.startingTime && hour.endingTime) {
+                    return {
+                        ...hour,
+                        openingHoursDay: hour.openingHoursDay ?? '',
+                        startingTime: hour.startingTime.slice(0, 5) + ' AM',
+                        endingTime: hour.endingTime.slice(0, 5) + ' PM'
+                    }
+                } else {
+                    return {
+                        ...hour,
+                        openingHoursDay: hour.openingHoursDay ?? '',
+                        startingTime: 'Closed',
+                        endingTime: ''
+                    }
+                }
+            })
+        },
+        isOpen: (state) => {
+            const now = new Date()
+            const currentDay = now.toLocaleDateString('th-TH', { weekday: 'long' })
+            const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`
+
+            const restaurantScheduleForToday = (state.data?.data.openingHours ?? []).find(hour => hour.openingHoursDay === currentDay)
+
+            if (!restaurantScheduleForToday || restaurantScheduleForToday.startingTime === 'Closed') return false
+
+            const todaysOpeningTime = restaurantScheduleForToday.startingTime?.split(' ')[0] ?? ''
+            const todaysClosingTime = restaurantScheduleForToday.endingTime?.split(' ')[0] ?? ''
+
+            return currentTime >= todaysOpeningTime && currentTime < todaysClosingTime
+        }
     },
 
     actions: {
