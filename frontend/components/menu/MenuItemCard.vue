@@ -42,7 +42,7 @@ const activeIcons = computed(() =>
 
 <template>
     <div
-        class="flex flex-row bg-white shadow-sm hover:shadow-xl rounded-xl transition-all duration-300 hover:scale-102 hover:bg-gradient-to-r hover:from-white hover:to-blue-50 group">
+        class="flex flex-row bg-white shadow-sm hover:shadow-lg rounded-xl transition-all duration-300 hover:scale-102 hover:bg-gradient-to-r hover:from-white hover:to-primary-light/10 group">
         <template v-if="loading">
             <div class="animate-pulse flex flex-row w-full gap-4">
                 <div class="rounded-xl w-1/3 bg-gray-200" /> <!-- Image skeleton -->
@@ -77,11 +77,11 @@ const activeIcons = computed(() =>
             </div>
             <div class="flex flex-col flex-1 gap-2 p-2 rounded-xl">
                 <div class="flex flex-row justify-between">
-                    <h3 class="text-lg md:text-xl font-bold group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 class="text-lg md:text-xl font-bold group-hover:text-primary transition-colors duration-300">
                         {{ title }}
                     </h3>
                     <span
-                        class="text-lg text-green-500 font-medium group-hover:scale-110 transition-transform duration-300">
+                        class="text-lg text-primary font-medium group-hover:scale-110 transition-transform duration-300">
                         ${{ price }}
                     </span>
                 </div>

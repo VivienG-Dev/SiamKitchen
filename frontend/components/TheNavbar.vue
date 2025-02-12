@@ -37,24 +37,24 @@ onUnmounted(() => {
         <div class="flex items-center justify-between">
             <!-- Brand -->
             <NuxtLink to="/" class="flex items-center space-x-2">
-                <Home class="w-6 h-6 text-blue-500" />
-                <span class="font-bold text-xl text-blue-500">{{ siteStore.data?.data.siteName }}</span>
+                <Home class="w-6 h-6 text-primary" />
+                <span class="font-bold text-xl text-primary">{{ siteStore.data?.data.siteName }}</span>
             </NuxtLink>
             <!-- Desktop navigation -->
             <div class="hidden md:flex space-x-4">
                 <NuxtLink v-for="item in navItems" :key="item.title" :to="item.href"
-                    class="relative px-3 py-2 text-gray-700 transition-colors duration-200 hover:text-blue-500"
-                    :class="{ 'text-blue-500': $route.path === item.href }">
+                    class="relative px-3 py-2 text-gray-700 hover:text-primary transition-colors duration-200"
+                    :class="{ 'text-gray-700': $route.path === item.href }">
                     {{ item.title }}
                     <span
-                        class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 transform origin-left transition-transform duration-300 ease-out"
+                        class="absolute bottom-0 left-0 w-full h-0.5 bg-primary transform origin-left transition-transform duration-300 ease-out"
                         :class="[$route.path === item.href ? 'scale-x-100' : 'scale-x-0', 'group-hover:scale-x-100']"></span>
                 </NuxtLink>
             </div>
             <!-- Mobile menu button -->
             <div class="md:hidden">
                 <button @click="toggleMobileMenu"
-                    class="p-2 rounded-md text-gray-700 hover:text-blue-500 hover:bg-gray-100 transition-colors duration-200">
+                    class="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200">
                     <template v-if="!mobileMenuOpen">
                         <Menu class="w-6 h-6" />
                     </template>
@@ -75,7 +75,7 @@ onUnmounted(() => {
             <div v-if="mobileMenuOpen" class="mt-2 overflow-hidden md:hidden">
                 <div class="flex flex-col space-y-1 py-2">
                     <NuxtLink v-for="item in navItems" :key="item.title" :to="item.href"
-                        class="block px-4 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-100 transition-colors duration-200"
+                        class="block px-4 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
                         @click="mobileMenuOpen = false">
                         {{ item.title }}
                     </NuxtLink>

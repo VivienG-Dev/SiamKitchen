@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const props = defineProps<{
-    variant: 'primary' | 'secondary' | 'outline';
+    variant: 'primary' | 'secondary' | 'outline' | 'ghost';
     link?: string;
 }>();
 
 const variantClasses = computed(() => ({
-    'primary': 'bg-white text-tahiti hover:bg-tahiti hover:text-white',
-    'secondary': 'bg-tahiti text-white hover:bg-white hover:text-tahiti',
-    'outline': 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-tahiti'
+    'primary': 'bg-secondary text-white hover:bg-secondary-light hover:text-white',
+    'secondary': 'bg-white text-secondary hover:bg-secondary-light hover:text-white',
+    'outline': 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-secondary',
+    'ghost': 'bg-transparent text-white hover:text-primary shadow-none underline underline-offset-2 decoration-primary decoration-2 hover:scale-none hover:rotate-none'
 })[props.variant]);
 </script>
 

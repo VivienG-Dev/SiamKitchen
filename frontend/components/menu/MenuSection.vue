@@ -35,12 +35,12 @@ const itemsByCategory = computed(() =>
             <template v-else>
                 <div v-for="category in itemsByCategory" :key="category.id" class="mb-16 relative">
                     <div class="mb-8 relative">
-                        <div class="flex items-center justify-between pb-4 border-b-2 border-blue-100">
+                        <div class="flex items-center justify-between pb-4 border-b-2 border-primary">
                             <div>
-                                <h3 class="text-3xl font-bold text-blue-900 mb-2">{{ category.name }}</h3>
+                                <h3 class="text-3xl font-bold text-primary mb-2">{{ category.name }}</h3>
                                 <p class="text-gray-600 italic">{{ category.description }}</p>
                             </div>
-                            <div class="hidden md:block text-blue-500 opacity-10 text-8xl font-bold">
+                            <div class="hidden md:block text-primary opacity-10 text-8xl font-bold">
                                 {{ category.name[0] }}
                             </div>
                         </div>

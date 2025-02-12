@@ -46,26 +46,26 @@ const handleSubmit = () => {
                             <div>
                                 <label for="name" class="block mb-2 font-medium">Name</label>
                                 <input type="text" id="name" v-model="formData.name" required
-                                    class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                    class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                     :class="{ 'border-red-500': errors.name }" />
                                 <p v-if="errors.name" class="mt-1 text-sm text-red-500">{{ errors.name }}</p>
                             </div>
                             <div>
                                 <label for="email" class="block mb-2 font-medium">Email</label>
                                 <input type="email" id="email" v-model="formData.email" required
-                                    class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                    class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                     :class="{ 'border-red-500': errors.email }" />
                                 <p v-if="errors.email" class="mt-1 text-sm text-red-500">{{ errors.email }}</p>
                             </div>
                             <div>
                                 <label for="message" class="block mb-2 font-medium">Message</label>
                                 <textarea id="message" v-model="formData.message" required rows="5"
-                                    class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                    class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                     :class="{ 'border-red-500': errors.message }"></textarea>
                                 <p v-if="errors.message" class="mt-1 text-sm text-red-500">{{ errors.message }}</p>
                             </div>
                             <button type="submit"
-                                class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg shadow-sm hover:shadow-md">
+                                class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium text-lg shadow-sm hover:shadow-md">
                                 Send Message
                             </button>
                         </form>
@@ -76,8 +76,8 @@ const handleSubmit = () => {
                 <div class="w-full md:w-1/2 space-y-8">
                     <div class="bg-white p-6 rounded-xl shadow-md">
                         <div class="flex items-center gap-4 mb-2">
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none"
+                            <div class="bg-primary/15 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -95,8 +95,8 @@ const handleSubmit = () => {
 
                     <div class="bg-white p-6 rounded-xl shadow-md">
                         <div class="flex items-center gap-4 mb-2">
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none"
+                            <div class="bg-primary/15 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -105,7 +105,7 @@ const handleSubmit = () => {
                             <div>
                                 <h2 class="text-xl font-semibold mb-2 text-gray-800">Email</h2>
                                 <a href="mailto:contact@example.com"
-                                    class="text-blue-600 hover:text-blue-700 hover:underline">
+                                    class="text-primary hover:text-primary/90 hover:underline">
                                     contact@example.com
                                 </a>
                             </div>
@@ -114,8 +114,8 @@ const handleSubmit = () => {
 
                     <div class="bg-white p-6 rounded-xl shadow-md">
                         <div class="flex items-center gap-4 mb-2">
-                            <div class="bg-blue-100 p-3 rounded-full">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none"
+                            <div class="bg-primary/15 p-3 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -123,7 +123,7 @@ const handleSubmit = () => {
                             </div>
                             <div>
                                 <h2 class="text-xl font-semibold mb-2 text-gray-800">Phone</h2>
-                                <a href="tel:+1234567890" class="text-blue-600 hover:text-blue-700 hover:underline">
+                                <a href="tel:+1234567890" class="text-primary hover:text-primary/90 hover:underline">
                                     (123) 456-7890
                                 </a>
                             </div>

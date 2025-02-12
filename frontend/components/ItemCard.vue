@@ -26,7 +26,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
     <div
-        class="flex-1 flex flex-col h-auto bg-white p-2 shadow-sm hover:shadow-lg rounded-xl transition-shadow duration-300 hover:shadow-blue-300/50">
+        class="flex-1 flex flex-col h-auto bg-white p-2 shadow-sm hover:shadow-lg rounded-xl transition-shadow duration-300 hover:shadow-primary/50">
         <template v-if="loading">
             <div class="animate-pulse">
                 <div class="rounded-xl w-full h-48 bg-gray-200" /> <!-- Image skeleton -->
@@ -50,7 +50,7 @@ withDefaults(defineProps<Props>(), {
                 <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
                     <div class="flex flex-row justify-between">
                         <h3 class="text-2xl font-bold">{{ title }}</h3>
-                        <span v-if="price" class="text-lg text-green-500 font-medium">
+                        <span v-if="price" class="text-lg text-primary font-medium">
                             ${{ price }}
                         </span>
                     </div>
