@@ -30,6 +30,12 @@ export const useMenuPageStore = defineStore('menuPage', {
                         parsed.data.menuPageImage = useFormatImageUrl(parsed.data.menuPageImage, baseUrl)
                     }
                     return parsed
+                },
+                getCachedData: (key) => {
+                    const nuxtApp = useNuxtApp()
+                    return nuxtApp.isHydrating
+                        ? nuxtApp.payload.data[key]
+                        : nuxtApp.static.data[key]
                 }
             })
 

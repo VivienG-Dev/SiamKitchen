@@ -56,6 +56,12 @@ export const useMenuStore = defineStore('menu', {
                                     }
                                 }))
                             }
+                        },
+                        getCachedData: (key) => {
+                            const nuxtApp = useNuxtApp()
+                            return nuxtApp.isHydrating
+                                ? nuxtApp.payload.data[key]
+                                : nuxtApp.static.data[key]
                         }
                     }
                 )

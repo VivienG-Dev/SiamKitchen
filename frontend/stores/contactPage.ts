@@ -30,6 +30,12 @@ export const useContactPageStore = defineStore('contactPage', {
                         parsed.data.contactPageImage = useFormatImageUrl(parsed.data.contactPageImage, baseUrl)
                     }
                     return parsed
+                },
+                getCachedData: (key) => {
+                    const nuxtApp = useNuxtApp()
+                    return nuxtApp.isHydrating
+                        ? nuxtApp.payload.data[key]
+                        : nuxtApp.static.data[key]
                 }
             })
 

@@ -26,6 +26,12 @@ export const useRecipeStore = defineStore('recipeDetail', {
                             parsed.data.recipeImage = useFormatImageUrl(parsed.data.recipeImage, baseUrl)
                         }
                         return parsed
+                    },
+                    getCachedData: (key) => {
+                        const nuxtApp = useNuxtApp()
+                        return nuxtApp.isHydrating
+                            ? nuxtApp.payload.data[key]
+                            : nuxtApp.static.data[key]
                     }
                 })
 

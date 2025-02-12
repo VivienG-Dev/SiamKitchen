@@ -32,6 +32,12 @@ export const useRecipesStore = defineStore('recipes', {
                             })
                         }
                         return parsed
+                    },
+                    getCachedData: (key) => {
+                        const nuxtApp = useNuxtApp()
+                        return nuxtApp.isHydrating
+                            ? nuxtApp.payload.data[key]
+                            : nuxtApp.static.data[key]
                     }
                 })
 
