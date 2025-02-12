@@ -8,11 +8,24 @@ body {
     --font-heading: "Playfair Display", "serif";
     --font-body: "Nunito", "sans-serif";
 
+    --color-primary: #D4AF37;
+    /* Gold */
+    --color-primary-light: #FFD700;
+    /* Light Gold */
+    --color-secondary: #7B2CBF;
+    /* Purple */
+    --color-secondary-light: #9D4EDD;
+    /* Light Purple */
     --color-midnight: #121063;
+    /* Dark Blue */
     --color-tahiti: #3ab7bf;
+    /* Teal */
     --color-bermuda: #78dcca;
+    /* Light Blue */
     --color-brown-500: #964b00;
+    /* Dark Brown */
     --color-brown-700: #663300;
+    /* Brown */
 }
 
 @layer base {
