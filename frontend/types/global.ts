@@ -21,7 +21,16 @@ export const siteSchema = z.object({
     data: z.object({
         siteName: z.string(),
         siteDescription: z.string(),
-        heroImage: imageSchema.nullable()
+        heroImage: imageSchema.nullable(),
+        openingHours: z.array(z.object({
+            id: z.number(),
+            openingHoursDay: z.string().nullable(),
+            startingTime: z.string().nullable(),
+            endingTime: z.string().nullable(),
+        })),
+        phoneNumber: z.string().nullable().optional(),
+        email: z.string().nullable().optional(),
+        address: z.string().nullable().optional(),
     })
 })
 
