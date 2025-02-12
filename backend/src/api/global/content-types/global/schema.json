@@ -4,7 +4,8 @@
   "info": {
     "singularName": "global",
     "pluralName": "globals",
-    "displayName": "Global"
+    "displayName": "Global",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -32,14 +33,15 @@
       "type": "text"
     },
     "favicon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -47,14 +49,15 @@
       }
     },
     "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -68,6 +71,16 @@
         }
       },
       "type": "text"
+    },
+    "openingHours": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "opening-hours.opening-hours"
     }
   }
 }

@@ -680,6 +680,7 @@ export interface ApiDisheDishe extends Struct.CollectionTypeSchema {
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
+    description: '';
     displayName: 'Global';
     pluralName: 'globals';
     singularName: 'global';
@@ -718,6 +719,15 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
       }>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::global.global'>;
+    openingHours: Schema.Attribute.Component<
+      'opening-hours.opening-hours',
+      true
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     siteDescription: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{

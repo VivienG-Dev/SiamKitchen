@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_opening_hours_opening_hours",
+  "info": {
+    "displayName": "Opening Hours",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "openingHoursDay": {
+      "type": "string"
+    },
+    "startingTime": {
+      "type": "time"
+    },
+    "endingTime": {
+      "type": "time"
+    }
+  }
+}

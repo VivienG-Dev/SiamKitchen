@@ -18,6 +18,19 @@ export interface AboutBlockAbout extends Struct.ComponentSchema {
   };
 }
 
+export interface OpeningHoursOpeningHours extends Struct.ComponentSchema {
+  collectionName: 'components_opening_hours_opening_hours';
+  info: {
+    displayName: 'Opening Hours';
+    icon: 'bulletList';
+  };
+  attributes: {
+    endingTime: Schema.Attribute.Time;
+    openingHoursDay: Schema.Attribute.String;
+    startingTime: Schema.Attribute.Time;
+  };
+}
+
 export interface TeamTeam extends Struct.ComponentSchema {
   collectionName: 'components_team_teams';
   info: {
@@ -36,6 +49,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'about-block.about': AboutBlockAbout;
+      'opening-hours.opening-hours': OpeningHoursOpeningHours;
       'team.team': TeamTeam;
     }
   }
