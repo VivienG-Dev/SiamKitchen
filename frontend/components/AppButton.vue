@@ -5,9 +5,9 @@ const props = defineProps<{
 }>();
 
 const variantClasses = computed(() => ({
-    'primary': 'bg-white text-blue-500 hover:bg-blue-500 hover:text-white',
-    'secondary': 'bg-blue-500 text-white hover:bg-white hover:text-blue-500',
-    'outline': 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-500'
+    'primary': 'bg-white text-tahiti hover:bg-tahiti hover:text-white',
+    'secondary': 'bg-tahiti text-white hover:bg-white hover:text-tahiti',
+    'outline': 'bg-transparent border-2 border-white text-white hover:bg-white hover:text-tahiti'
 })[props.variant]);
 </script>
 
