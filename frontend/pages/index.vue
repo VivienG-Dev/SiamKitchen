@@ -7,12 +7,6 @@ usePreloadImage(siteStore.heroImageUrl)
 const scrollToPromotions = () => {
     promotionsSection.value?.scrollIntoView({ behavior: 'smooth' })
 }
-
-const isOpen = computed(() => {
-    const now = new Date()
-    const hours = now.getHours()
-    return hours >= 10 && hours < 22
-})
 </script>
 
 <template>
@@ -20,7 +14,8 @@ const isOpen = computed(() => {
         <IndexHero :heroImageUrl="siteStore.data?.data.heroImage?.url"
             :title="siteStore.data?.data.siteName ?? 'Siam ???'"
             :description="siteStore.data?.data.siteDescription ?? 'The family-owned restaurant that specializes in traditional Thai cuisine.'"
-            :isOpen="isOpen" @scroll="scrollToPromotions" :loading="siteStore.loading" />
+            :isOpen="siteStore.isOpen" @scroll="scrollToPromotions" :loading="siteStore.loading"
+            :openingHours="siteStore.formattedOpeningHours" />
 
         <IndexPromotions ref="promotionsSection" />
 
