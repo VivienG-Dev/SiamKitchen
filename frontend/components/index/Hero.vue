@@ -7,6 +7,14 @@ interface Props {
     isOpen: boolean;
     loading?: boolean;
     heroImageUrl?: string | null;
+    openingHours: OpeningHour[];
+}
+
+interface OpeningHour {
+    id: number;
+    openingHoursDay: string;
+    startingTime: string;
+    endingTime: string;
 }
 
 defineProps<Props>();
@@ -38,7 +46,9 @@ const emit = defineEmits(['scroll']);
                         <div class="w-2 h-2 rounded-full" :class="isOpen ? 'bg-green-400 animate-pulse' : 'bg-red-400'">
                         </div>
                         <span class="text-sm font-medium">
-                            {{ isOpen ? 'Open Now' : 'Closed' }} · 10:00 - 22:00
+                            {{ isOpen ? 'Open Now' : 'Closed' }} · {{ openingHours.find(hour => hour.openingHoursDay ===
+                                'Monday')?.startingTime }} -
+                            {{ openingHours.find(hour => hour.openingHoursDay === 'Monday')?.endingTime }}
                         </span>
                     </div>
                 </div>
