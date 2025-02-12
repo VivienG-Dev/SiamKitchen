@@ -1,7 +1,6 @@
 # Thai Restaurant Website
 
 A modern, full-stack restaurant website built with Nuxt 3 and Strapi CMS. Features a responsive design, multilingual support, and real-time opening hours.
-This project was made to testing the Strapi CMS and improve my skills with Nuxt 3.
 
 ## 🌟 Features
 
