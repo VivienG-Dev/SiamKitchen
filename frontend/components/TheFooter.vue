@@ -42,7 +42,8 @@ const currentYear = new Date().getFullYear();
                 </div>
             </div>
             <div class="mt-8 py-8 border-t border-white/20 text-center text-white">
-                <p>© {{ currentYear }} {{ siteStore.data?.data.siteName }}. Made with ❤️ by VivienG</p>
+                <p>© {{ currentYear }} {{ siteStore.data?.data.siteName }}. Made with ❤️ by <a
+                        href="https://www.vivieng.com" class="underline">VivienG</a></p>
             </div>
         </Container>
     </footer>
