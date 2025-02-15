@@ -9,7 +9,7 @@ interface Props {
     heroImageUrl?: string | null | undefined;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const showDietaryIcons = ref(false);
 
@@ -23,6 +23,8 @@ const mappedDietaryIcons = constantDietaryIcons.map((item) => ({
 const isMenuPage = computed(() => {
     return useRoute().path.includes('menu')
 })
+
+const cleanHeroTitle = props.title.replace('| Siam Kitchen', '');
 </script>
 
 <template>
@@ -33,7 +35,7 @@ const isMenuPage = computed(() => {
 
         <Container class="flex flex-col items-center justify-center h-full" :class="{ 'mt-8': isMenuPage }">
             <div class="flex flex-col items-center">
-                <h1 class="text-3xl md:text-4xl font-bold">{{ title }}</h1>
+                <h1 class="text-3xl md:text-4xl font-bold">{{ cleanHeroTitle }}</h1>
                 <p class="text-lg md:text-2xl">{{ description }}</p>
             </div>
             <div v-if="showDietaryGuide" class="flex flex-row gap-4">
