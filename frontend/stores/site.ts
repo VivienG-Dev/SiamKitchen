@@ -44,6 +44,9 @@ export const useSiteStore = defineStore('site', {
             const todaysClosingTime = restaurantScheduleForToday.endingTime?.split(' ')[0] ?? ''
 
             return currentTime >= todaysOpeningTime && currentTime < todaysClosingTime
+        },
+        businessLocation: (state) => {
+            return `${state.data?.data.businessLocation.streetNumber} ${state.data?.data.businessLocation.street}, ${state.data?.data.businessLocation.postalCode} ${state.data?.data.businessLocation.city}`
         }
     },
 
