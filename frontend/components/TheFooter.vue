@@ -23,7 +23,7 @@ const currentYear = new Date().getFullYear();
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-white pt-8">
                 <div>
                     <h3 class="font-bold text-2xl">Address</h3>
-                    <p>123 Main St, Anytown, USA</p>
+                    <p>{{ siteStore.businessLocation }}</p>
                 </div>
                 <div>
                     <h3 class="font-bold text-2xl">Hours</h3>

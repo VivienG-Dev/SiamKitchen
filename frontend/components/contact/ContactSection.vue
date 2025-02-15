@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { z } from 'zod'
 
+const siteStore = useSiteStore()
+
 const formSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
     email: z.string().email('Please enter a valid email'),
@@ -87,8 +89,7 @@ const handleSubmit = () => {
                             </div>
                             <div>
                                 <h2 class="text-xl font-semibold mb-2 text-gray-800">Address</h2>
-                                <p class="text-gray-600">123 Business Street</p>
-                                <p class="text-gray-600">City, State 12345</p>
+                                <p class="text-gray-600">{{ siteStore.businessLocation }}</p>
                             </div>
                         </div>
                     </div>
@@ -106,7 +107,7 @@ const handleSubmit = () => {
                                 <h2 class="text-xl font-semibold mb-2 text-gray-800">Email</h2>
                                 <a href="mailto:contact@example.com"
                                     class="text-primary hover:text-primary/90 hover:underline">
-                                    contact@example.com
+                                    {{ siteStore.data?.data.email }}
                                 </a>
                             </div>
                         </div>
@@ -124,7 +125,7 @@ const handleSubmit = () => {
                             <div>
                                 <h2 class="text-xl font-semibold mb-2 text-gray-800">Phone</h2>
                                 <a href="tel:+1234567890" class="text-primary hover:text-primary/90 hover:underline">
-                                    (123) 456-7890
+                                    {{ siteStore.data?.data.phoneNumber }}
                                 </a>
                             </div>
                         </div>
