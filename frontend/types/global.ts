@@ -28,9 +28,15 @@ export const siteSchema = z.object({
             startingTime: z.string().nullable(),
             endingTime: z.string().nullable(),
         })),
+        businessLocation: z.object({
+            id: z.number(),
+            street: z.string(),
+            streetNumber: z.string(),
+            postalCode: z.string(),
+            city: z.string()
+        }),
         phoneNumber: z.string().nullable().optional(),
         email: z.string().nullable().optional(),
-        address: z.string().nullable().optional(),
     })
 })
 
