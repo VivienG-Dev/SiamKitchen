@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ChevronsDown } from 'lucide-vue-next';
+import { useSiteStore } from '~/stores/site';
+const siteStore = useSiteStore();
 
 interface Props {
     title: string;
@@ -20,6 +22,11 @@ interface OpeningHour {
 defineProps<Props>();
 
 const emit = defineEmits(['scroll']);
+
+const todaysFormattedOpeningHours = computed(() => {
+    const currentDayName = new Date().toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Asia/Bangkok' });
+    return siteStore.formattedOpeningHours.find(hour => hour.openingHoursDay === currentDayName);
+});
 </script>
 
 <template>
@@ -50,9 +57,9 @@ const emit = defineEmits(['scroll']);
                                 :class="isOpen ? 'bg-green-400' : 'bg-red-400'"></span>
                         </span>
                         <span class="text-sm font-medium">
-                            {{ isOpen ? 'Open Now' : 'Closed' }} · {{ openingHours.find(hour => hour.openingHoursDay ===
-                                'Monday')?.startingTime }} -
-                            {{ openingHours.find(hour => hour.openingHoursDay === 'Monday')?.endingTime }}
+                            {{ isOpen ? `Open Now · ${todaysFormattedOpeningHours?.startingTime} -
+                            ${todaysFormattedOpeningHours?.endingTime}` :
+                                'Closed' }}
                         </span>
                     </div>
                 </div>
