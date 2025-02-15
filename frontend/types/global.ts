@@ -37,6 +37,12 @@ export const siteSchema = z.object({
         }),
         phoneNumber: z.string().nullable().optional(),
         email: z.string().nullable().optional(),
+        seo: z.object({
+            metaTitle: z.string().nullable().optional(),
+            metaDescription: z.string().nullable().optional(),
+            canonicalURL: z.string().nullable().optional(),
+            keywords: z.string().nullable().optional()
+        })
     })
 })
 
