@@ -4,6 +4,16 @@ const siteStore = useSiteStore()
 await siteStore.fetchSiteData()
 
 useHead({
+  meta: [
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1'
+    },
+    {
+      name: 'robots',
+      content: 'index, follow'
+    }
+  ],
   link: [
     {
       rel: 'preconnect',
