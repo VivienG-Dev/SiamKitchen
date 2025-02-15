@@ -2,11 +2,22 @@
 const promotionsSection = ref<HTMLElement | null>(null)
 const siteStore = useSiteStore()
 
+console.log(siteStore.data?.data.seo)
+
 usePreloadImage(siteStore.heroImageUrl)
 
 const scrollToPromotions = () => {
     promotionsSection.value?.scrollIntoView({ behavior: 'smooth' })
 }
+
+useSeoMeta({
+    title: siteStore.data?.data.seo.metaTitle,
+    ogTitle: siteStore.data?.data.seo.metaTitle,
+    description: siteStore.data?.data.seo.metaDescription,
+    ogDescription: siteStore.data?.data.seo.metaDescription,
+    ogUrl: siteStore.data?.data.seo.canonicalURL,
+    keywords: siteStore.data?.data.seo.keywords
+})
 </script>
 
 <template>
