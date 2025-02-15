@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_business_location_business_locations",
+  "info": {
+    "displayName": "Business Location",
+    "icon": "search"
+  },
+  "options": {},
+  "attributes": {
+    "street": {
+      "type": "string"
+    },
+    "streetNumber": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    }
+  }
+}

@@ -18,6 +18,21 @@ export interface AboutBlockAbout extends Struct.ComponentSchema {
   };
 }
 
+export interface BusinessLocationBusinessLocation
+  extends Struct.ComponentSchema {
+  collectionName: 'components_business_location_business_locations';
+  info: {
+    displayName: 'Business Location';
+    icon: 'search';
+  };
+  attributes: {
+    city: Schema.Attribute.String;
+    postalCode: Schema.Attribute.String;
+    street: Schema.Attribute.String;
+    streetNumber: Schema.Attribute.String;
+  };
+}
+
 export interface OpeningHoursOpeningHours extends Struct.ComponentSchema {
   collectionName: 'components_opening_hours_opening_hours';
   info: {
@@ -49,6 +64,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'about-block.about': AboutBlockAbout;
+      'business-location.business-location': BusinessLocationBusinessLocation;
       'opening-hours.opening-hours': OpeningHoursOpeningHours;
       'team.team': TeamTeam;
     }
