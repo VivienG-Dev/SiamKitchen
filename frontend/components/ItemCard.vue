@@ -18,10 +18,9 @@ interface Props {
     link?: string
 }
 
-withDefaults(defineProps<Props>(), {
-    loading: false,
-    link: ''
-});
+const props = defineProps<Props>()
+
+const cleanTitle = props.title.replace('| Siam Kitchen', '');
 </script>
 
 <template>
@@ -49,7 +48,7 @@ withDefaults(defineProps<Props>(), {
                     class="rounded-xl w-full h-48 object-cover" />
                 <div class="flex flex-col gap-2 backdrop-blur-sm p-4 rounded-xl">
                     <div class="flex flex-row justify-between">
-                        <h3 class="text-2xl font-bold">{{ title }}</h3>
+                        <h3 class="text-2xl font-bold">{{ cleanTitle }}</h3>
                         <span v-if="price" class="text-lg text-primary font-medium">
                             ${{ price }}
                         </span>
