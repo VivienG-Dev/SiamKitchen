@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - cd /home/grvi0340/siamkitchen-front && npm install && npm run build
+    - cd /home/grvi0340/siamkitchen-back && npm install && npm run build
