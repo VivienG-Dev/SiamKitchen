@@ -18,7 +18,7 @@ export const useMenuPageStore = defineStore('menuPage', {
         async fetchMenuPageData() {
             const config = useRuntimeConfig()
             const baseUrl = config.public.strapiUrl
-            const apiUrl = `${baseUrl}/api/menu-page?=*&populate[menuPageImage][populate]=*`
+            const apiUrl = `${baseUrl}/api/menu-page?=*&populate[menuPageImage][populate]=*&populate[seo][populate]=*`
 
             const { data, error } = await useFetch<MenuPageResponse>(apiUrl, {
                 key: 'menu-page-data',
