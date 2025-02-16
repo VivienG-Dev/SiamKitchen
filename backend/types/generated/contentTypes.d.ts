@@ -856,6 +856,7 @@ export interface ApiMenuPageMenuPage extends Struct.SingleTypeSchema {
 export interface ApiRecipePageRecipePage extends Struct.SingleTypeSchema {
   collectionName: 'recipe_pages';
   info: {
+    description: '';
     displayName: 'Recipe Page';
     pluralName: 'recipe-pages';
     singularName: 'recipe-page';
@@ -898,6 +899,12 @@ export interface ApiRecipePageRecipePage extends Struct.SingleTypeSchema {
           localized: true;
         };
       }>;
+    seo: Schema.Attribute.Component<'shared.seo', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -907,6 +914,7 @@ export interface ApiRecipePageRecipePage extends Struct.SingleTypeSchema {
 export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
   collectionName: 'recipes';
   info: {
+    description: '';
     displayName: 'Recipe';
     pluralName: 'recipes';
     singularName: 'recipe';
@@ -947,6 +955,12 @@ export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
         };
       }>;
     recipeTitle: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    seo: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
