@@ -18,7 +18,7 @@ export const useContactPageStore = defineStore('contactPage', {
         async fetchContactPageData() {
             const config = useRuntimeConfig()
             const baseUrl = config.public.strapiUrl
-            const apiUrl = `${baseUrl}/api/contact-page?=*&populate[contactPageImage][populate]=*`
+            const apiUrl = `${baseUrl}/api/contact-page?=*&populate[contactPageImage][populate]=*&populate[seo][populate]=*`
 
             const { data, error } = await useFetch<ContactPageResponse>(apiUrl, {
                 key: 'contact-page-data',

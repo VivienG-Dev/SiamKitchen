@@ -3,6 +3,15 @@ const contactPageStore = useContactPageStore()
 await contactPageStore.fetchContactPageData()
 
 usePreloadImage(contactPageStore.contactPageImageUrl)
+
+useSeoMeta({
+    title: contactPageStore.data?.seo?.metaTitle,
+    description: contactPageStore.data?.seo?.metaDescription,
+    ogTitle: contactPageStore.data?.seo?.metaTitle,
+    ogDescription: contactPageStore.data?.seo?.metaDescription,
+    ogUrl: contactPageStore.data?.seo?.canonicalURL,
+    keywords: contactPageStore.data?.seo?.keywords
+})
 </script>
 
 <template>
