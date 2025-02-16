@@ -18,7 +18,7 @@ export const useRecipePageStore = defineStore('recipePage', {
         async fetchRecipePageData() {
             const config = useRuntimeConfig()
             const baseUrl = config.public.strapiUrl
-            const apiUrl = `${baseUrl}/api/recipe-page?=*&populate[recipePageImage][populate]=*`
+            const apiUrl = `${baseUrl}/api/recipe-page?=*&populate[recipePageImage][populate]=*&populate[seo][populate]=*`
 
             const { data, error } = await useFetch<RecipePageResponse>(apiUrl, {
                 key: 'recipe-page-data',

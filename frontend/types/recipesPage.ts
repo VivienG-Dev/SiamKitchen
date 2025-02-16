@@ -11,6 +11,12 @@ export const recipePageSchema = z.object({
     updatedAt: z.string(),
     publishedAt: z.string(),
     locale: z.string(),
+    seo: z.object({
+        metaTitle: z.string().nullable().optional(),
+        metaDescription: z.string().nullable().optional(),
+        canonicalURL: z.string().nullable().optional(),
+        keywords: z.string().nullable().optional(),
+    })
 })
 
 export const recipePageResponseSchema = z.object({
