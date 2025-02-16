@@ -1,4 +1,6 @@
 deployment:
   tasks:
-    - cd /home/grvi0340/siamkitchen-front && npm install && npm run build
-    - cd /home/grvi0340/siamkitchen-back && npm install && npm run build
+    - mkdir -p /home/grvi0340/siamkitchen-front
+    - mkdir -p /home/grvi0340/siamkitchen-back
+    - cd /home/grvi0340/repositories/SiamKitchen/frontend && npm install && npm run build && cp -r dist/* /home/grvi0340/siamkitchen-front
+    - cd /home/grvi0340/repositories/SiamKitchen/backend && npm install && npm run build && cp -r * /home/grvi0340/siamkitchen-back
