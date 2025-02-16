@@ -24,6 +24,12 @@ export const recipeSchema = z.object({
     recipeDescription: z.string(),
     recipeContent: z.string(),
     recipeImage: recipeImageSchema,
+    seo: z.object({
+        metaTitle: z.string().nullable().optional(),
+        metaDescription: z.string().nullable().optional(),
+        canonicalURL: z.string().nullable().optional(),
+        keywords: z.string().nullable().optional(),
+    })
 })
 
 export const recipesResponseSchema = z.object({
