@@ -16,7 +16,7 @@ await recipesStore.fetchRecipes()
                 <template v-else>
                     <ItemCard v-for="recipe in recipesStore.data" :key="recipe.id" :title="recipe.recipeTitle"
                         :description="recipe.recipeDescription" :imageUrl="recipe.recipeImage"
-                        :link="`/recipes/${recipe.documentId}`" />
+                        :link="`/recipes/${recipe.documentId}/${recipe.seoUrl}`" />
                 </template>
             </div>
         </Container>
