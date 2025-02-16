@@ -442,6 +442,7 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
 export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
   collectionName: 'contact_pages';
   info: {
+    description: '';
     displayName: 'Contact Page';
     pluralName: 'contact-pages';
     singularName: 'contact-page';
@@ -484,6 +485,12 @@ export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
       'api::contact-page.contact-page'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
