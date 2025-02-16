@@ -27,7 +27,7 @@ jobs:
 
     - name: Deploy to o2switch
       run: |
-        ssh o2switch "mkdir -p /home/grvi0340/siamkitchen-front/frontend"
-        ssh o2switch "mkdir -p /home/grvi0340/siamkitchen-back/backend"
-        scp -r frontend/dist/* o2switch:/home/grvi0340/siamkitchen-front/frontend/
-        scp -r backend/* o2switch:/home/grvi0340/siamkitchen-back/backend/
+        ssh o2switch "mkdir -p /home/grvi0340/siamkitchen-front/"
+        ssh o2switch "mkdir -p /home/grvi0340/siamkitchen-back/"
+        scp -r frontend/dist/* o2switch:/home/grvi0340/siamkitchen-front/
+        scp -r backend/* o2switch:/home/grvi0340/siamkitchen-back/
