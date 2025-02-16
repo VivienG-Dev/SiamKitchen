@@ -18,7 +18,7 @@ export const useAboutStore = defineStore('about', {
         async fetchAbout() {
             const config = useRuntimeConfig()
             const baseUrl = config.public.strapiUrl
-            const apiUrl = `${baseUrl}/api/about-page?populate[Team][populate]=*&populate[About][populate]=*&populate[aboutPageImage][populate]=*`
+            const apiUrl = `${baseUrl}/api/about-page?populate[Team][populate]=*&populate[About][populate]=*&populate[aboutPageImage][populate]=*&populate[seo][populate]=*`
 
             const { data, error } = await useFetch<AboutResponse>(apiUrl, {
                 key: 'about-data',

@@ -43,6 +43,13 @@ export const aboutResponseSchema = z.object({
         About: z.array(aboutBlockSchema),
         Team: z.array(teamMemberSchema),
         aboutPageImage: aboutPageImageSchema,
+        seo: z.object({
+            metaTitle: z.string().nullable().optional(),
+            metaDescription: z.string().nullable().optional(),
+            canonicalURL: z.string().nullable().optional(),
+            keywords: z.string().nullable().optional(),
+            ogUrl: z.string().nullable().optional(),
+        })
     }),
     meta: z.object({})
 })

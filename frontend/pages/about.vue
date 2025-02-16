@@ -3,6 +3,17 @@ const aboutStore = useAboutStore()
 await aboutStore.fetchAbout()
 
 usePreloadImage(aboutStore.aboutPageImageUrl)
+
+console.log(aboutStore.data?.data.seo)
+
+useSeoMeta({
+    title: aboutStore.data?.data.seo?.metaTitle,
+    description: aboutStore.data?.data.seo?.metaDescription,
+    ogTitle: aboutStore.data?.data.seo?.metaTitle,
+    ogDescription: aboutStore.data?.data.seo?.metaDescription,
+    ogUrl: aboutStore.data?.data.seo?.ogUrl,
+    keywords: aboutStore.data?.data.seo?.keywords
+})
 </script>
 
 <template>
