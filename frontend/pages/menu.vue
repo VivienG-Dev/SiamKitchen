@@ -4,8 +4,6 @@ import { useMenuPageStore } from '~/stores/menuPage'
 const menuPageStore = useMenuPageStore()
 await menuPageStore.fetchMenuPageData()
 
-console.log(menuPageStore.data)
-
 usePreloadImage(menuPageStore.menuPageImageUrl)
 
 useSeoMeta({
