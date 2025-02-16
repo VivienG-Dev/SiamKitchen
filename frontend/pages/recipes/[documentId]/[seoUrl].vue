@@ -2,15 +2,18 @@
 const recipePageStore = useRecipePageStore()
 await recipePageStore.fetchRecipePageData()
 
+const recipesStore = useRecipesStore()
+await recipesStore.fetchRecipes()
+
 usePreloadImage(recipePageStore.recipePageImageUrl)
 
 useSeoMeta({
-    title: recipePageStore.data?.seo?.metaTitle,
-    description: recipePageStore.data?.seo?.metaDescription,
-    ogTitle: recipePageStore.data?.seo?.metaTitle,
-    ogDescription: recipePageStore.data?.seo?.metaDescription,
-    ogUrl: recipePageStore.data?.seo?.canonicalURL,
-    keywords: recipePageStore.data?.seo?.keywords
+    title: recipesStore.data?.[0].seo?.metaTitle,
+    description: recipesStore.data?.[0].seo?.metaDescription,
+    ogTitle: recipesStore.data?.[0].seo?.metaTitle,
+    ogDescription: recipesStore.data?.[0].seo?.metaDescription,
+    ogUrl: recipesStore.data?.[0].seo?.canonicalURL,
+    keywords: recipesStore.data?.[0].seo?.keywords
 })
 </script>
 

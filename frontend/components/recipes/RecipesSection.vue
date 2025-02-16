@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useRecipesStore } from '~/stores/recipes'
-
 const recipesStore = useRecipesStore()
 await recipesStore.fetchRecipes()
 </script>
