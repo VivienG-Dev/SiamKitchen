@@ -41,7 +41,8 @@ export const siteSchema = z.object({
             metaTitle: z.string().nullable().optional(),
             metaDescription: z.string().nullable().optional(),
             canonicalURL: z.string().nullable().optional(),
-            keywords: z.string().nullable().optional()
+            keywords: z.string().nullable().optional(),
+            ogUrl: z.string().nullable().optional(),
         })
     })
 })

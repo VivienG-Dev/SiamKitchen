@@ -2,8 +2,6 @@
 const promotionsSection = ref<HTMLElement | null>(null)
 const siteStore = useSiteStore()
 
-console.log(siteStore.data?.data.seo)
-
 usePreloadImage(siteStore.heroImageUrl)
 
 const scrollToPromotions = () => {
@@ -15,7 +13,7 @@ useSeoMeta({
     ogTitle: siteStore.data?.data.seo.metaTitle,
     description: siteStore.data?.data.seo.metaDescription,
     ogDescription: siteStore.data?.data.seo.metaDescription,
-    ogUrl: siteStore.data?.data.seo.canonicalURL,
+    ogUrl: siteStore.data?.data.seo.ogUrl,
     keywords: siteStore.data?.data.seo.keywords
 })
 </script>
