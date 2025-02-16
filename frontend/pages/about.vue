@@ -4,8 +4,6 @@ await aboutStore.fetchAbout()
 
 usePreloadImage(aboutStore.aboutPageImageUrl)
 
-console.log(aboutStore.data?.data.seo)
-
 useSeoMeta({
     title: aboutStore.data?.data.seo?.metaTitle,
     description: aboutStore.data?.data.seo?.metaDescription,
