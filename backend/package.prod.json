@@ -1,0 +1,29 @@
+{
+    "name": "backend",
+    "version": "0.1.0",
+    "private": true,
+    "description": "A Strapi application",
+    "scripts": {
+        "build:prod": "rm -rf ../strapi-production dist && cp .env .env.backup && cp .env.production .env && strapi build && node scripts/prepare-prod.mjs && mv .env.backup .env",
+        "start": "strapi start",
+        "strapi": "strapi"
+    },
+    "dependencies": {
+        "@strapi/plugin-cloud": "5.9.0",
+        "@strapi/plugin-seo": "^2.0.8",
+        "@strapi/plugin-users-permissions": "5.9.0",
+        "@strapi/strapi": "5.9.0",
+        "mysql2": "3.9.8",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-router-dom": "^6.0.0",
+        "styled-components": "^6.0.0"
+    },
+    "engines": {
+        "node": ">=18.0.0 <=22.x.x",
+        "npm": ">=6.0.0"
+    },
+    "strapi": {
+        "uuid": "0b124e89-4929-4007-8fb8-f48764c00f25"
+    }
+}
