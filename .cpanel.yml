@@ -2,5 +2,3 @@ deployment:
   tasks:
     - cd /home/grvi0340/repositories/SiamKitchen/frontend
     - npm install
-    - npm run generate
-    - cp -r /home/grvi0340/repositories/SiamKitchen/frontend/.output/* /home/grvi0340/siamkitchen-front
