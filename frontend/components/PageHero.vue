@@ -38,8 +38,8 @@ const cleanHeroTitle = props.title.replace('| Siam Kitchen', '');
                 <h1 class="text-3xl md:text-4xl font-bold">{{ cleanHeroTitle }}</h1>
                 <p class="text-lg md:text-2xl">{{ description }}</p>
             </div>
-            <div v-if="showDietaryGuide" class="flex flex-row gap-4">
-                <AppButton variant="primary" class="mt-8" @click="showDietaryIcons = !showDietaryIcons">
+            <div v-if="showDietaryGuide" class="flex flex-row gap-2 md:gap-4">
+                <AppButton variant="primary" class="mt-0 md:mt-8" @click="showDietaryIcons = !showDietaryIcons">
                     {{ showDietaryIcons ? 'Hide' : 'Show' }} Dietary Guide
                 </AppButton>
             </div>
