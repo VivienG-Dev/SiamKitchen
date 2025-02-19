@@ -87,7 +87,7 @@ const activeIcons = computed(() =>
                 </div>
                 <div>
                     <p
-                        class="text-sm md:text-md line-clamp-2 text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                        class="text-sm md:text-md line-clamp-4 text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
                         {{ description }}</p>
                 </div>
             </div>
