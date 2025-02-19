@@ -11,7 +11,7 @@ await aboutStore.fetchAbout()
             <div class="mb-16 mt-16 relative">
                 <div class="absolute left-1/2 transform h-full w-px bg-blue-200"></div>
 
-                <div class="space-y-24">
+                <div class="flex flex-col gap-24">
                     <div v-for="(point, index) in aboutStore.data?.data.About" :key="point.id"
                         class="relative flex items-center justify-center">
                         <div
