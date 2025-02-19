@@ -9,7 +9,7 @@ await aboutStore.fetchAbout()
     <section class="text-gray-700 px-4 md:px-4 lg:px-4 xl:px-0">
         <Container class="flex flex-col max-w-6xl mx-auto">
             <div class="mb-16 mt-16 relative">
-                <div class="absolute left-1/2 transform h-full w-px bg-blue-200"></div>
+                <div class="absolute left-1/2 transform h-full w-px bg-primary hidden md:block"></div>
 
                 <div class="flex flex-col gap-24">
                     <div v-for="(point, index) in aboutStore.data?.data.About" :key="point.id"
