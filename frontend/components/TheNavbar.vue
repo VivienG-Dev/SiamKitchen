@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Home, Menu, X } from 'lucide-vue-next'
 const siteStore = useSiteStore()
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
