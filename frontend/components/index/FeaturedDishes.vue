@@ -2,11 +2,15 @@
 import { useDishesStore } from '~/stores/featuredDishes'
 
 const dishesStore = useDishesStore()
+const featuredSectionRef = ref<HTMLElement | null>(null)
+
+defineExpose({ scrollIntoView: () => featuredSectionRef.value?.scrollIntoView({ behavior: 'smooth' }) })
+
 await dishesStore.fetchFeaturedDishes()
 </script>
 
 <template>
-    <section class="text-black px-4 md:px-0 h-auto md:h-[40rem]">
+    <section ref="featuredSectionRef" class="text-black px-4 md:px-0 h-auto md:h-[40rem]">
         <Container class="flex flex-col justify-center h-full">
             <h1 class="text-3xl md:text-4xl font-bold">Featured Dishes</h1>
             <p class="text-lg md:text-2xl">Our featured dishes.</p>
