@@ -75,7 +75,7 @@ const handleSubmit = () => {
                 </div>
 
                 <!-- Contact Information -->
-                <div class="w-full md:w-1/2 space-y-8">
+                <div class="flex flex-col gap-8 w-full md:w-1/2">
                     <div class="bg-white p-6 rounded-xl shadow-md">
                         <div class="flex items-center gap-4 mb-2">
                             <div class="bg-primary/15 p-3 rounded-full">
