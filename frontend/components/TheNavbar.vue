@@ -54,7 +54,9 @@ onUnmounted(() => {
             <!-- Mobile menu button -->
             <div class="md:hidden">
                 <button @click="toggleMobileMenu"
-                    class="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200">
+                    class="p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
+                    :aria-label="mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+                    :aria-expanded="mobileMenuOpen">
                     <template v-if="!mobileMenuOpen">
                         <Menu class="w-6 h-6" />
                     </template>
