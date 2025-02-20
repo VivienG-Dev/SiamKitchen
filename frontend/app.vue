@@ -16,21 +16,6 @@ useHead({
       name: 'robots',
       content: 'index, follow'
     }
-  ],
-  link: [
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.googleapis.com'
-    },
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
-      crossorigin: ''
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Nunito:ital@0;1&family=Playfair+Display:wght@500&display=swap'
-    }
   ]
 })
 </script>
