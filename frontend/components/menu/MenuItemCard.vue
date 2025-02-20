@@ -61,7 +61,14 @@ const activeIcons = computed(() =>
 
         <template v-else>
             <div class="relative w-1/3 h-36 md:h-32">
-                <NuxtImg :src="imageUrl" :alt="title" class="rounded-l-xl w-full h-full object-cover" />
+                <NuxtImg :src="imageUrl" :alt="title" class="rounded-l-xl w-full h-full object-cover" :modifiers="{
+                    width: 300,
+                    height: 240,
+                    format: 'webp',
+                    quality: 80,
+                    loading: 'lazy',
+                    placeholder: 'blur'
+                }" sizes="(max-width: 768px) 150px, 300px" preload />
                 <!-- Dietary Icons -->
                 <div class="absolute top-2 right-2 flex flex-wrap gap-1 max-w-[90%]">
                     <div v-for="icon in activeIcons" :key="icon.label" class="group/icon relative">
@@ -69,7 +76,7 @@ const activeIcons = computed(() =>
                         <!-- Tooltip -->
                         <div class="absolute bottom-full right-0 mb-2 hidden group-hover/icon:block z-10">
                             <div class="bg-gray-800 text-white text-xs rounded py-1 px-2 whitespace-nowrap">
-                                {{ icon.label.replace('_', ' ').replace(/\b\w/g, char => char.toUpperCase()) }}
+                                {{icon.label.replace('_', ' ').replace(/\b\w/g, char => char.toUpperCase())}}
                             </div>
                         </div>
                     </div>
