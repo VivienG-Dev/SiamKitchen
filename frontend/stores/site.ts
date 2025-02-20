@@ -12,6 +12,7 @@ export const useSiteStore = defineStore('site', {
 
     getters: {
         heroImageUrl: (state) => state.data?.data.heroImage?.url || null,
+        heroImageMobileUrl: (state) => state.data?.data.heroImageMobile?.url || null,
         formattedOpeningHours: (state) => {
 
             const format12Hour = (time24: string) => {
@@ -89,6 +90,9 @@ export const useSiteStore = defineStore('site', {
                     const parsed = siteSchema.parse(data)
                     if (parsed.data && parsed.data.heroImage) {
                         parsed.data.heroImage = useFormatImageUrl(parsed.data.heroImage, baseUrl)
+                    }
+                    if (parsed.data && parsed.data.heroImageMobile) {
+                        parsed.data.heroImageMobile = useFormatImageUrl(parsed.data.heroImageMobile, baseUrl)
                     }
                     return parsed
                 },
