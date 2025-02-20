@@ -34,8 +34,8 @@ const todaysFormattedOpeningHours = computed(() => {
             <source v-if="heroImageUrl" :srcset="heroImageUrl" media="(min-width: 768px)" />
             <source v-if="heroImageMobileUrl" :srcset="heroImageMobileUrl" media="(max-width: 767px)" />
             <NuxtImg v-if="heroImageUrl || heroImageMobileUrl" :src="heroImageUrl || heroImageMobileUrl || ''"
-                class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager"
-                fetchpriority="high" preload sizes="100vw" placeholder :alt="`${title} hero background`" />
+                class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" priority preload
+                sizes="100vw" placeholder :alt="`${title} hero background`" />
         </picture>
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 opacity-60 -z-20"></div>
 
