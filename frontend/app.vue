@@ -4,6 +4,9 @@ const siteStore = useSiteStore()
 await siteStore.fetchSiteData()
 
 useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
   meta: [
     {
       name: 'viewport',
