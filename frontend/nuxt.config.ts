@@ -2,7 +2,7 @@
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 
   vite: {
@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ['@nuxt/image', '@pinia/nuxt'],
+  modules: ['@nuxt/image', '@pinia/nuxt', '@nuxtjs/google-fonts'],
 
   runtimeConfig: {
     public: {
@@ -24,5 +24,23 @@ export default defineNuxtConfig({
     '/recipes/**': { swr: 43200 }, // 12 hours
     '/about': { swr: 43200 }, // 12 hours
     '/contact': { swr: 86400 }, // 24 hours
+  },
+
+  googleFonts: {
+    families: {
+      Nunito: {
+        wght: ['400'],
+        ital: ['0', '1']
+      },
+      'Playfair+Display': {
+        wght: ['500']
+      }
+    },
+    display: 'swap',
+    prefetch: true,
+    preconnect: true,
+    preload: true,
+    download: false,
+    base64: false
   }
 })
