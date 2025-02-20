@@ -31,11 +31,13 @@ const todaysFormattedOpeningHours = computed(() => {
 <template>
     <section class="relative text-white p-4 m-4 h-[calc(100dvh-2rem)] rounded-4xl overflow-hidden">
         <picture>
-            <source v-if="heroImageUrl" :srcset="heroImageUrl" media="(min-width: 768px)" />
-            <source v-if="heroImageMobileUrl" :srcset="heroImageMobileUrl" media="(max-width: 767px)" />
+            <source v-if="heroImageUrl" :srcset="heroImageUrl" media="(min-width: 768px)" fetchpriority="high" />
+            <source v-if="heroImageMobileUrl" :srcset="heroImageMobileUrl" media="(max-width: 767px)"
+                fetchpriority="high" />
             <NuxtImg v-if="heroImageUrl || heroImageMobileUrl" :src="heroImageUrl || heroImageMobileUrl || ''"
-                class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" priority preload
-                sizes="100vw" placeholder :alt="`${title} hero background`" />
+                class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager"
+                fetchpriority="high" priority preload sizes="(max-width: 767px) 100vw, 100vw" quality="75" placeholder
+                :alt="`${title} hero background`" />
         </picture>
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 opacity-60 -z-20"></div>
 
