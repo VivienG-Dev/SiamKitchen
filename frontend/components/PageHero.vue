@@ -6,7 +6,12 @@ interface Props {
     title: string;
     description: string;
     showDietaryGuide?: boolean;
-    heroImageUrl?: string | null | undefined;
+    heroImageUrl?: {
+        url: string | null;
+        formats?: {
+            large?: { url: string; width: number; height: number } | undefined;
+        } | null;
+    } | null;
 }
 
 const props = defineProps<Props>();
@@ -29,8 +34,14 @@ const cleanHeroTitle = props.title.replace('| Siam Kitchen', '');
 
 <template>
     <section class="relative text-white p-4 m-4 h-[15rem] md:h-[20rem] rounded-4xl overflow-hidden">
-        <NuxtImg v-if="heroImageUrl" :src="heroImageUrl"
-            class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" alt="" />
+        <picture>
+            <source v-if="heroImageUrl?.formats?.large?.url" :srcset="heroImageUrl.formats.large.url"
+                media="(max-width: 768px)" />
+            <source v-if="heroImageUrl?.url" :srcset="heroImageUrl.url" media="(min-width: 769px)" />
+            <NuxtImg v-if="heroImageUrl" :src="heroImageUrl.url || heroImageUrl.formats?.large?.url"
+                class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" priority
+                :alt="title" />
+        </picture>
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 opacity-60 -z-20"></div>
 
         <Container class="flex flex-col items-center justify-center h-full" :class="{ 'mt-8': isMenuPage }">
