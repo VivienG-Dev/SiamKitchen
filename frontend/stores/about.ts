@@ -11,7 +11,10 @@ export const useAboutStore = defineStore('about', {
     }),
 
     getters: {
-        aboutPageImageUrl: (state) => state.data?.data.aboutPageImage?.url || null
+        aboutPageImageUrl: (state) => ({
+            url: state.data?.data.aboutPageImage?.url || null,
+            formats: state.data?.data.aboutPageImage?.formats || null
+        })
     },
 
     actions: {

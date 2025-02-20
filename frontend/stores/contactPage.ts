@@ -11,7 +11,10 @@ export const useContactPageStore = defineStore('contactPage', {
     }),
 
     getters: {
-        contactPageImageUrl: (state) => state.data?.contactPageImage?.url || null
+        contactPageImageUrl: (state) => ({
+            url: state.data?.contactPageImage?.url || null,
+            formats: state.data?.contactPageImage?.formats || null
+        })
     },
 
     actions: {

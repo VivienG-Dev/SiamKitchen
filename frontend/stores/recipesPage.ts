@@ -11,7 +11,10 @@ export const useRecipePageStore = defineStore('recipePage', {
     }),
 
     getters: {
-        recipePageImageUrl: (state) => state.data?.recipePageImage?.url || null
+        recipePageImageUrl: (state) => ({
+            url: state.data?.recipePageImage?.url || null,
+            formats: state.data?.recipePageImage?.formats || null
+        })
     },
 
     actions: {

@@ -11,7 +11,10 @@ export const useMenuPageStore = defineStore('menuPage', {
     }),
 
     getters: {
-        menuPageImageUrl: (state) => state.data?.menuPageImage?.url || null
+        menuPageImageUrl: (state) => ({
+            url: state.data?.menuPageImage?.url || null,
+            formats: state.data?.menuPageImage?.formats || null
+        })
     },
 
     actions: {
