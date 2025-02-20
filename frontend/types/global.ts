@@ -22,6 +22,7 @@ export const siteSchema = z.object({
         siteName: z.string(),
         siteDescription: z.string(),
         heroImage: imageSchema.nullable(),
+        heroImageMobile: imageSchema.nullable(),
         openingHours: z.array(z.object({
             id: z.number(),
             openingHoursDay: z.string().nullable(),
