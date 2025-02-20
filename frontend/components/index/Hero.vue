@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ChevronsDown } from 'lucide-vue-next';
-import { useSiteStore } from '~/stores/site';
-const siteStore = useSiteStore();
 
 interface Props {
     title: string;
@@ -9,6 +7,7 @@ interface Props {
     isOpen: boolean;
     isLoading?: boolean;
     heroImageUrl?: string | null;
+    heroImageMobileUrl?: string | null;
     openingHours: OpeningHour[];
 }
 
@@ -19,20 +18,25 @@ interface OpeningHour {
     endingTime: string;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const emit = defineEmits(['scroll']);
 
 const todaysFormattedOpeningHours = computed(() => {
     const currentDayName = new Date().toLocaleDateString('en-US', { weekday: 'long', timeZone: 'Asia/Bangkok' });
-    return siteStore.formattedOpeningHours.find(hour => hour.openingHoursDay === currentDayName);
+    return props.openingHours.find(hour => hour.openingHoursDay === currentDayName);
 });
 </script>
 
 <template>
     <section class="relative text-white p-4 m-4 h-[calc(100dvh-2rem)] rounded-4xl overflow-hidden">
-        <NuxtImg v-if="heroImageUrl" :src="heroImageUrl"
-            class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" alt="" />
+        <picture>
+            <source v-if="heroImageUrl" :srcset="heroImageUrl" media="(min-width: 768px)" />
+            <source v-if="heroImageMobileUrl" :srcset="heroImageMobileUrl" media="(max-width: 767px)" />
+            <NuxtImg v-if="heroImageUrl || heroImageMobileUrl" :src="heroImageUrl || heroImageMobileUrl || ''"
+                class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager"
+                fetchpriority="high" preload sizes="100vw" placeholder :alt="`${title} hero background`" />
+        </picture>
         <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-400 to-pink-400 opacity-60 -z-20"></div>
 
         <Container class="flex flex-col justify-center h-full relative">
