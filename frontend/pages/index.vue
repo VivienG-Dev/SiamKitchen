@@ -3,6 +3,7 @@ const featuredDishesSection = ref<HTMLElement | null>(null)
 const siteStore = useSiteStore()
 
 usePreloadImage(siteStore.heroImageUrl)
+usePreloadImage(siteStore.heroImageMobileUrl)
 
 const scrollToFeaturedDishes = () => {
     featuredDishesSection.value?.scrollIntoView({ behavior: 'smooth' })
@@ -21,6 +22,7 @@ useSeoMeta({
 <template>
     <div>
         <IndexHero :heroImageUrl="siteStore.data?.data.heroImage?.url"
+            :heroImageMobileUrl="siteStore.data?.data.heroImageMobile?.url"
             :title="siteStore.data?.data.siteName ?? 'Siam ???'"
             :description="siteStore.data?.data.siteDescription ?? 'The family-owned restaurant that specializes in traditional Thai cuisine.'"
             :isOpen="siteStore.isOpen" @scroll="scrollToFeaturedDishes" :loading="siteStore.loading"
