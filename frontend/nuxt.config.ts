@@ -28,19 +28,13 @@ export default defineNuxtConfig({
 
   googleFonts: {
     families: {
-      Nunito: {
-        wght: ['400'],
-        ital: ['0', '1']
-      },
-      'Playfair+Display': {
-        wght: ['500']
-      }
+      Nunito: true,
+      'Playfair+Display': true
     },
     display: 'swap',
     prefetch: true,
     preconnect: true,
     preload: true,
-    download: false,
-    base64: false
+    useStylesheet: true
   }
 })
