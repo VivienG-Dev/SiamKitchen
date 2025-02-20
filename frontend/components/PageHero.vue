@@ -36,8 +36,9 @@ const cleanHeroTitle = props.title.replace('| Siam Kitchen', '');
     <section class="relative text-white p-4 m-4 h-[15rem] md:h-[20rem] rounded-4xl overflow-hidden">
         <picture>
             <source v-if="heroImageUrl?.formats?.large?.url" :srcset="heroImageUrl.formats.large.url"
-                media="(max-width: 768px)" />
-            <source v-if="heroImageUrl?.url" :srcset="heroImageUrl.url" media="(min-width: 769px)" />
+                media="(max-width: 768px)" fetchpriority="high" />
+            <source v-if="heroImageUrl?.url" :srcset="heroImageUrl.url" media="(min-width: 769px)"
+                fetchpriority="high" />
             <NuxtImg v-if="heroImageUrl" :src="heroImageUrl.url || heroImageUrl.formats?.large?.url"
                 class="absolute inset-0 w-full h-full object-cover brightness-50 -z-10" loading="eager" priority
                 :alt="title" />
