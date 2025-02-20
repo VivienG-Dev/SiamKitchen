@@ -2,7 +2,8 @@
 const contactPageStore = useContactPageStore()
 await contactPageStore.fetchContactPageData()
 
-usePreloadImage(contactPageStore.contactPageImageUrl)
+usePreloadImage(contactPageStore.contactPageImageUrl?.formats?.large?.url)
+usePreloadImage(contactPageStore.contactPageImageUrl?.url)
 
 useSeoMeta({
     title: contactPageStore.data?.seo?.metaTitle,
@@ -18,7 +19,7 @@ useSeoMeta({
     <div>
         <PageHero :title="contactPageStore.data?.contactPageTitle || 'Get in Touch'"
             :description="contactPageStore.data?.contactPageDescription || 'Contact us for any questions or feedback'"
-            :showDietaryGuide="false" :heroImageUrl="contactPageStore.contactPageImageUrl" />
+            :heroImageUrl="contactPageStore.contactPageImageUrl" />
         <ContactSection />
     </div>
 </template>

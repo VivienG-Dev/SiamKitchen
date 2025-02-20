@@ -2,7 +2,8 @@
 const aboutStore = useAboutStore()
 await aboutStore.fetchAbout()
 
-usePreloadImage(aboutStore.aboutPageImageUrl)
+usePreloadImage(aboutStore.aboutPageImageUrl?.formats?.large?.url)
+usePreloadImage(aboutStore.aboutPageImageUrl?.url)
 
 useSeoMeta({
     title: aboutStore.data?.data.seo?.metaTitle,
@@ -16,7 +17,8 @@ useSeoMeta({
 
 <template>
     <div>
-        <PageHero title="About Us" description="Learn more about our mission and values" :showDietaryGuide="false"
+        <PageHero :title="aboutStore.data?.data.aboutPageTitle || 'About Us'"
+            :description="aboutStore.data?.data.aboutPageDescription || 'Learn more about our mission and values'"
             :heroImageUrl="aboutStore.aboutPageImageUrl" />
         <AboutSection />
     </div>

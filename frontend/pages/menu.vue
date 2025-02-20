@@ -4,7 +4,8 @@ import { useMenuPageStore } from '~/stores/menuPage'
 const menuPageStore = useMenuPageStore()
 await menuPageStore.fetchMenuPageData()
 
-usePreloadImage(menuPageStore.menuPageImageUrl)
+usePreloadImage(menuPageStore.menuPageImageUrl?.formats?.large?.url)
+usePreloadImage(menuPageStore.menuPageImageUrl?.url)
 
 useSeoMeta({
     title: menuPageStore.data?.seo?.metaTitle,

@@ -2,7 +2,8 @@
 const recipePageStore = useRecipePageStore()
 await recipePageStore.fetchRecipePageData()
 
-usePreloadImage(recipePageStore.recipePageImageUrl)
+usePreloadImage(recipePageStore.recipePageImageUrl?.formats?.large?.url)
+usePreloadImage(recipePageStore.recipePageImageUrl?.url)
 
 useSeoMeta({
     title: recipePageStore.data?.seo?.metaTitle,
@@ -18,7 +19,7 @@ useSeoMeta({
     <div>
         <PageHero :title="recipePageStore.data?.recipePageTitle || 'Our recipes'"
             :description="recipePageStore.data?.recipePageDescription || 'Explore our delicious recipes'"
-            :showDietaryGuide="false" :heroImageUrl="recipePageStore.recipePageImageUrl" />
+            :heroImageUrl="recipePageStore.recipePageImageUrl" />
         <RecipesSection />
     </div>
 </template>
