@@ -19,13 +19,6 @@ export default defineNuxtConfig({
     }
   },
 
-  routeRules: {
-    '/menu': { swr: 3600 }, // 1 hour
-    '/recipes/**': { swr: 43200 }, // 12 hours
-    '/about': { swr: 43200 }, // 12 hours
-    '/contact': { swr: 86400 }, // 24 hours
-  },
-
   googleFonts: {
     families: {
       Nunito: true,
