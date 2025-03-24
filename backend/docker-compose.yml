@@ -2,7 +2,7 @@ version: '3'
 
 services:
   strapi:
-    image: 'strapi/strapi:latest'
+    image: 'elestio/strapi-development:latest'
     environment:
       - SERVICE_FQDN_STRAPI_1337
       - DATABASE_CLIENT=mysql
@@ -22,9 +22,12 @@ services:
       - 'STRAPI_ENFORCE_SOURCEMAPS=${STRAPI_ENFORCE_SOURCEMAPS:-false}'
       - 'FAST_REFRESH=${FAST_REFRESH:-true}'
     volumes:
+      - 'strapi-app:/opt/app'
       - 'strapi-config:/opt/app/config'
       - 'strapi-src:/opt/app/src'
       - 'strapi-uploads:/opt/app/public/uploads'
+    ports:
+      - '1337:1337'
     healthcheck:
       test:
         - CMD
@@ -46,6 +49,8 @@ services:
       - MYSQL_USER=$SERVICE_USER_MYSQL
       - MYSQL_PASSWORD=$SERVICE_PASSWORD_MYSQL
       - MYSQL_ROOT_PASSWORD=$SERVICE_PASSWORD_MYSQL
+    ports:
+      - '3307:3306'
     volumes:
       - 'strapi-mysql-data:/var/lib/mysql'
     healthcheck:
@@ -63,6 +68,7 @@ services:
       retries: 10
 
 volumes:
+  strapi-app:
   strapi-config:
   strapi-src:
   strapi-uploads:
