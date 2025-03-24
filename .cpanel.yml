@@ -1,4 +1,0 @@
-deployment:
-  tasks:
-    - cd /home/grvi0340/repositories/SiamKitchen/frontend
-    - npm install
