@@ -1,0 +1,42 @@
+ version: '3'
+
+services:
+  strapi:
+    image: 'strapi/strapi:latest'
+    environment:
+      - DATABASE_CLIENT=mysql
+      - DATABASE_HOST=host.docker.internal
+      - DATABASE_PORT=6606
+      - 'DATABASE_NAME=${MYSQL_DATABASE:-strapi}'
+      - DATABASE_USERNAME=$SERVICE_USER_MYSQL
+      - DATABASE_PASSWORD=$SERVICE_PASSWORD_MYSQL
+      - JWT_SECRET=$SERVICE_BASE64_64_SECRET
+      - ADMIN_JWT_SECRET=$SERVICE_BASE64_64_SECRET
+      - APP_KEYS=$SERVICE_BASE64_64_KEY
+      - 'STRAPI_TELEMETRY_DISABLED=${STRAPI_TELEMETRY_DISABLED:-true}'
+      - 'STRAPI_LICENSE=${STRAPI_LICENSE}'
+      - 'NODE_ENV=${NODE_ENV:-production}'
+      - 'STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=${STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE:-en}'
+    volumes:
+      - 'strapi-app:/srv/app'
+      - 'strapi-config:/srv/app/config'
+      - 'strapi-uploads:/srv/app/public/uploads'
+    ports:
+      - '1337:1337'
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - '-q'
+        - '--spider'
+        - 'http://localhost:1337/'
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  strapi-app:
+  strapi-config:
+  strapi-uploads: 
