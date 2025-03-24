@@ -4,41 +4,66 @@ services:
   strapi:
     image: 'strapi/strapi:latest'
     environment:
+      - SERVICE_FQDN_STRAPI_1337
       - DATABASE_CLIENT=mysql
-      - DATABASE_HOST=host.docker.internal
-      - DATABASE_PORT=6606
+      - DATABASE_HOST=mysql
+      - DATABASE_PORT=3307
       - 'DATABASE_NAME=${MYSQL_DATABASE:-strapi}'
       - DATABASE_USERNAME=$SERVICE_USER_MYSQL
       - DATABASE_PASSWORD=$SERVICE_PASSWORD_MYSQL
       - JWT_SECRET=$SERVICE_BASE64_64_SECRET
-      - ADMIN_JWT_SECRET=$SERVICE_BASE64_64_SECRET_ADMIN
+      - ADMIN_JWT_SECRET=$SERVICE_BASE64_64_SECRET
       - APP_KEYS=$SERVICE_BASE64_64_KEY
-      - API_TOKEN_SALT=$SERVICE_API_TOKEN_SALT
-      - TRANSFER_TOKEN_SALT=$SERVICE_TRANSFER_TOKEN_SALT
       - 'STRAPI_TELEMETRY_DISABLED=${STRAPI_TELEMETRY_DISABLED:-true}'
       - 'STRAPI_LICENSE=${STRAPI_LICENSE}'
-      - 'NODE_ENV=${NODE_ENV:-production}'
+      - 'NODE_ENV=${NODE_ENV:-development}'
+      - 'BROWSER=${BROWSER:-true}'
       - 'STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE=${STRAPI_PLUGIN_I18N_INIT_LOCALE_CODE:-en}'
+      - 'STRAPI_ENFORCE_SOURCEMAPS=${STRAPI_ENFORCE_SOURCEMAPS:-false}'
+      - 'FAST_REFRESH=${FAST_REFRESH:-true}'
     volumes:
-      - 'strapi-app:/srv/app'
-      - 'strapi-config:/srv/app/config'
-      - 'strapi-uploads:/srv/app/public/uploads'
-    ports:
-      - '1337:1337'
+      - 'strapi-config:/opt/app/config'
+      - 'strapi-src:/opt/app/src'
+      - 'strapi-uploads:/opt/app/public/uploads'
     healthcheck:
       test:
         - CMD
         - wget
         - '-q'
         - '--spider'
-        - 'http://localhost:1337/'
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+        - 'http://127.0.0.1:1337/'
+      interval: 5s
+      timeout: 20s
+      retries: 10
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: 'mysql:8.0'
+    environment:
+      - 'MYSQL_DATABASE=${MYSQL_DATABASE:-strapi}'
+      - MYSQL_USER=$SERVICE_USER_MYSQL
+      - MYSQL_PASSWORD=$SERVICE_PASSWORD_MYSQL
+      - MYSQL_ROOT_PASSWORD=$SERVICE_PASSWORD_MYSQL
+    volumes:
+      - 'strapi-mysql-data:/var/lib/mysql'
+    healthcheck:
+      test:
+        - CMD
+        - mysqladmin
+        - ping
+        - '-h'
+        - localhost
+        - '-u'
+        - root
+        - '-p$$MYSQL_ROOT_PASSWORD'
+      interval: 5s
+      timeout: 20s
+      retries: 10
 
 volumes:
-  strapi-app:
   strapi-config:
+  strapi-src:
   strapi-uploads:
+  strapi-mysql-data:
