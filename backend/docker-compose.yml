@@ -1,4 +1,4 @@
- version: '3'
+version: '3'
 
 services:
   strapi:
@@ -39,4 +39,4 @@ services:
 volumes:
   strapi-app:
   strapi-config:
-  strapi-uploads: 
+  strapi-uploads:
